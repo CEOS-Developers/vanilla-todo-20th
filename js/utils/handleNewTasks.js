@@ -34,9 +34,14 @@ export function handleNewTask() {
   todoContent.textContent = todoInput.value;
 
   todoInput.value = "";
-  if (doneBtn.checked) {
-    todoContent.classList.add("done");
-  }
+
+  doneBtn.addEventListener("change", () => {
+    if (doneBtn.checked) {
+      todoContent.style.textDecoration = "line-through";
+    } else {
+      todoContent.style.textDecoration = "none";
+    }
+  });
 
   todosWrapper.append(onetodoWrapper);
 }
