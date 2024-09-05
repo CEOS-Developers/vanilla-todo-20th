@@ -129,9 +129,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Save Task
     taskSave.addEventListener('click', function () {
-        const taskTitle = document.getElementById('task-title').value;
-        const taskDesc = document.getElementById('task-desc').value;
-
+        const taskTitleInput = document.getElementById('task-title');
+        const taskDescInput = document.getElementById('task-desc');
+        const taskTitle = taskTitleInput.value; 
+        const taskDesc = taskDescInput.value;
 
         if (selectedDate) {  // 날짜가 선택된 경우에만 저장
             const newTask = {
@@ -142,8 +143,8 @@ document.addEventListener('DOMContentLoaded', function () {
             };
 
             // input field init
-            taskTitle = '';
-            taskDesc = '';
+            taskTitleInput.value = '';
+            taskDescInput.value = '';
 
             addTaskToLocal(selectedDate, newTask); 
             loadTasks(selectedDate); 
