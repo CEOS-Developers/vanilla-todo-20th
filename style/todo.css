@@ -1,1 +1,8 @@
 @import "reset.css";
+
+header {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  color: white;
+}
