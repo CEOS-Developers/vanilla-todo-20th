@@ -3,6 +3,51 @@
 header {
   display: flex;
   justify-content: center;
-  width: 50%;
+  width: 25rem;
   color: white;
+}
+
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+}
+
+.todoListWrapper {
+  width: 25rem;
+  height: 25rem;
+
+  background-color: white;
+}
+
+.newTaskBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 10rem;
+  height: 3rem;
+  border-radius: 10rem;
+
+  color: white;
+  font-size: 1rem;
+  font-weight: 400;
+
+  box-shadow: 2px 2px 2px white;
+
+  background-color: #d0a4ff;
+
+  margin-bottom: 10rem;
+
+  position: relative;
+  bottom: 1.2rem;
+}
+
+.newTaskBtn:hover {
+  color: #d0a4ff;
+  background-color: white;
+  box-shadow: 2px 2px 2px #d0a4ff;
 }
