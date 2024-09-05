@@ -1,1 +1,65 @@
 /* 본인의 디자인 감각을 최대한 발휘해주세요! */
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav {
+  width: 600px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.contents {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.todoTop {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputBox {
+  width: 300px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.input {
+  width: 70%;
+  border: transparent;
+}
+
+.submitBtn {
+  color: #85b6ff;
+  font-family: "Pretendard";
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.mentStyle {
+  color: #458fff;
+  font-family: "Pretendard";
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.boxStyle {
+  border-radius: 30px;
+  border: 1px solid #85b6ff;
+}
