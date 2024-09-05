@@ -8,7 +8,44 @@
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="wrapper">
+      <div class="container">
+        <!-- header -->
+        <header>
+          <h2 class="today"></h2>
+          <h1>Today</h1>
+        </header>
+        <!-- nav -->
+        <nav>
+          <ul class="week-days"></ul>
+        </nav>
+        <!-- main -->
+        <main class="task-list"></main>
+        <!-- footer -->
+        <footer>
+          <button class="btn-modal">+</button>
+          <span class="task-add" style="display: none;">
+            <div>
+              <input
+                type="text"
+                id="task-title"
+                placeholder="Task Title"
+                />
+              <input
+                type="text"
+                id="task-desc"
+                placeholder="Task Description"
+                />
+            </div>
+            <div>
+              <button class="btn save">save</button>
+              <button class="btn back">back</button>
+
+            </div>
+          </span>
+        </footer>
+      </div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
