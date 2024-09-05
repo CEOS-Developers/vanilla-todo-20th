@@ -136,6 +136,11 @@ table {
   box-sizing: border-box;
 }
 
+input {
+  border: 0;
+  outline: none;
+}
+
 html {
   background-color: #e3e9ff;
 }

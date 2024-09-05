@@ -1,4 +1,5 @@
 @import "reset.css";
+@import "list.css";
 
 header {
   display: flex;
@@ -17,6 +18,11 @@ header {
 }
 
 .todoListWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   width: 25rem;
   height: 25rem;
 
