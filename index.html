@@ -9,28 +9,28 @@
 
   <body>
     <div class="container">
-      <div class="nav boxStyle">
-        <span class="intro mentStyle">당신의 할 일을 작성해보세요 ✏️</span>
-        <span class="showInput mentStyle">입력창 불러오기</span>
-      </div>
+      <nav class="box-style">
+        <span class="intro ment-style">당신의 할 일을 작성해보세요 ✏️</span>
+        <button class="showInput ment-style">입력창 불러오기</button>
+      </nav>
 
-      <div class="contents boxStyle">
-        <div class="todo">
+      <main class="contents box-style">
+        <section class="todo">
           <div class="todoTop">
-            <span class="mentStyle">What I have to do</span>
-            <span class="inputBox boxStyle">
+            <h2 class="ment-style">What I have to do</h2>
+            <form class="inputBox box-style">
               <input class="input" />
               <span class="submitBtn">작성하기</span>
-            </span>
+            </form>
           </div>
           <ul class="todoList"></ul>
-        </div>
+        </section>
 
-        <div class="did">
-          <div class="mentStyle">What I did</div>
+        <section class="did">
+          <h2 class="ment-style">What I did</h2>
           <ul class="didList"></ul>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   </body>
   <script src="script.js"></script>
