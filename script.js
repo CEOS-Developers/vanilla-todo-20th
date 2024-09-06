@@ -148,9 +148,26 @@ const showMessage = document.querySelector(".show-input"); // 입력창 열고 �
 
 // 입력창 열고 닫기 함수
 const toggleForm = () => {
-  form.style.display = form.style.display === "none" ? "flex" : "none";
-  showMessage.innerHTML =
-    form.style.display === "none" ? "입력창 불러오기" : "입력창 다시닫기";
+  if (form.classList.contains("show")) {
+    form.classList.remove("show");
+    form.classList.add("hide");
+
+    form.addEventListener(
+      "animationend",
+      () => {
+        form.style.display = "none";
+        form.classList.remove("hide");
+      },
+      { once: true }
+    );
+    showMessage.innerHTML = "입력창 불러오기";
+  } else {
+    form.style.display = "flex";
+    form.classList.remove("hide");
+    form.classList.add("show");
+
+    showMessage.innerHTML = "입력창 다시닫기";
+  }
 };
 
 // 이벤트 리스너 등록 및 기존 데이터 불러오기 함수

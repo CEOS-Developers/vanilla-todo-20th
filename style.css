@@ -55,6 +55,29 @@ main {
   justify-content: space-between;
 }
 
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px); /* 위에서 아래로 */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* 제자리 */
+  }
+}
+
+@keyframes slideUpFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
 .input-box {
   width: 50%;
   height: 1.875rem;
@@ -63,6 +86,15 @@ main {
   align-items: center;
   justify-content: space-between;
   padding: 0 0.625rem;
+}
+
+.input-box.show {
+  display: flex;
+  animation: slideDownFadeIn 0.3s ease-out forwards;
+}
+
+.input-box.hide {
+  animation: slideUpFadeOut 0.3s ease-out forwards;
 }
 
 input {
@@ -116,7 +148,7 @@ ul {
 }
 
 footer {
-  width: 12.5rem;
+  width: 14rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
