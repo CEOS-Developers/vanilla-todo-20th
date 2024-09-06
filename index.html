@@ -8,7 +8,25 @@
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div class="header">✓ To Do</div>
+      <div class="todoContainer">
+        <h1 class="title">TO DO LIST</h1>
+        <p id="todayDate">9월 6일 금요일</p>
+
+        <!-- input container -->
+        <div class="WriteForm">
+          <form id="todoForm" class="writeTodoForm">
+            <img src="./icon/check.svg" class="check_icon">
+            <input type="text" class="TodoInput" placeholder="Add a To Do">
+            <button class="addBtn">Add</button>
+          </form>
+        </div>
+
+        <!-- todo list -->
+        <ul class="todoList"></ul>
+      </div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>

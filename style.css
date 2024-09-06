@@ -1,1 +1,44 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+ li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+ } 
+
+ /**/
+
+ .todoContainer {
+    background-color: #f1f3ff;}
+header{
+    padding-left: 45px;
+    
+}
+
+
+.completed-text {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.toggle-icon, .delete-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.toggle-icon {
+    margin-right: 10px;
+}
+
+.delete-icon {
+    margin-left: auto;
+}
+
+span {
+    flex-grow: 1;
+}
