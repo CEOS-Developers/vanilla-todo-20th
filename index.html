@@ -8,7 +8,34 @@
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <img src="./src/toYesterday.svg">
+      <div class="main">
+        <p>할 일 2개</p>
+        <h1 class="date">2024년 9월 6일</h1>
+        <p id="day">금요일</p>
+
+        <div class="input">
+          <form id="inputForm">
+            <input type="text" class="TodoInput" placeholder="To Do 입력 후 Enter">
+          </form>
+        </div>
+
+        <ul class="todoList">
+          <li>
+            <img src="./src/unchecked.svg">
+            <span>비오네</span>
+            <img src="./src/deleteBtn.svg">
+          </li>
+          <li>
+            <img src="./src/checked.svg">
+            <span>가로수길 가기</span>
+            <img src="./src/deleteBtn.svg">
+          </li>
+        </ul>
+      </div>
+      <img src="./src/toTomorrow.svg">
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
