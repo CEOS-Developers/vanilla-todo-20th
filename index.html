@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
+    <title>TodoList</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -22,7 +26,7 @@
             <h2 class="ment-style">What I have to do</h2>
             <form class="input-box box-style" style="display: none">
               <input class="input" />
-              <button class="submit-btn">작성하기</button>
+              <button class="bold-style">작성하기</button>
             </form>
           </div>
           <ul class="todoList"></ul>
@@ -34,12 +38,12 @@
       </main>
       <footer>
         <span>
-          <span class="today"><b>T</b>otal: </span>
-          <span class="count"></span>
+          <span class="today">Total: </span>
+          <span class="count bold-style"></span>
         </span>
         <span>
-          <span class="today"> <b>A</b>ccomplishment: </span>
-          <span class="accomplishment"></span>
+          <span class="today">Accomplishment: </span>
+          <span class="accomplishment bold-style"></span>
         </span>
       </footer>
     </div>

@@ -28,6 +28,18 @@ const initTodoList = () => {
   dones.forEach((done) => printItem(done, "did"));
 };
 
+// 할 일과 한 일 개수 및 성취도 업데이트 함수
+const updateCounts = () => {
+  const totalCount = todos.length + dones.length;
+  const doneCount = dones.length;
+  const countElement = document.querySelector(".count");
+  const accomplishmentElement = document.querySelector(".accomplishment");
+
+  countElement.innerText = totalCount;
+  accomplishmentElement.innerText =
+    totalCount > 0 ? `${doneCount}/${totalCount}` : "0/0";
+};
+
 /* 공용 함수 */
 // 버튼 생성하기 함수
 const createBtn = (src, className, clickHandler) => {
@@ -83,6 +95,7 @@ const addTodoItem = (event) => {
     saveToLocalStorage("todos", todos); // 업데이트된 todos 배열을 localStorage에 저장
     printItem(todoInput, "todo");
     document.querySelector(".input").value = ""; // 입력창 초기화
+    updateCounts();
   }
 };
 
@@ -93,15 +106,18 @@ const deleteItem = (e, classSelector, array, key, listSelector) => {
   array = array.filter((item) => item !== text);
   saveToLocalStorage(key, array);
   document.querySelector(listSelector).removeChild(target);
+  updateCounts();
   return array;
 };
 
 const deleteTodoItem = (e) => {
   todos = deleteItem(e, ".todo-text", todos, "todos", ".todoList");
+  updateCounts();
 };
 
 const deleteDidItem = (e) => {
   dones = deleteItem(e, ".did-text", dones, "dones", ".didList");
+  updateCounts();
 };
 
 // 할 일에서 한 일로 이동 함수
@@ -112,6 +128,7 @@ const todoToDid = (e) => {
   dones.push(todoText);
   saveToLocalStorage("dones", dones); // 한 일 저장
   printItem(todoText, "did");
+  updateCounts();
 };
 
 // 한 일에서 할 일로 이동 함수
@@ -122,6 +139,7 @@ const didToTodo = (e) => {
   todos.push(didText);
   saveToLocalStorage("todos", todos); // 할 일 저장
   printItem(didText, "todo");
+  updateCounts();
 };
 
 /* todo 입력, 체크, 삭제 */
@@ -140,6 +158,7 @@ const init = () => {
   form.addEventListener("submit", addTodoItem);
   showMessage.addEventListener("click", toggleForm);
   initTodoList();
+  updateCounts();
 };
 
 init();

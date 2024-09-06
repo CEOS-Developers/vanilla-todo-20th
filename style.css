@@ -86,7 +86,7 @@ button {
   background-color: transparent;
 }
 
-.submit-btn {
+.bold-style {
   color: #85b6ff;
   font-family: "Pretendard";
   font-weight: 600;
@@ -121,6 +121,7 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   align-self: flex-start;
+  margin-top: 10px;
 }
 
 /*todo 항목 스타일*/
