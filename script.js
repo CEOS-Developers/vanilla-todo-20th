@@ -19,11 +19,17 @@ function addTodo(){
     const span = document.createElement('span');
     span.innerText = todoInput.value;
     todoInput.value = '';
-
+    
+    const doneBtn = document.createElement('button');
+    doneBtn.addEventListener('click', () => {
+      li.classList.toggle('done');
+    })
+    
     const delBtn = document.createElement('button');
     delBtn.innerText = 'x';
     delBtn.addEventListener('click', deleteTodo)
 
+    li.appendChild(doneBtn);
     li.appendChild(span);
     li.appendChild(delBtn);
 

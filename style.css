@@ -1,1 +1,4 @@
 /* 본인의 디자인 감각을 최대한 발휘해주세요! */
+ul li.done {
+  text-decoration: line-through;
+}
