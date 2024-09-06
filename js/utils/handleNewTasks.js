@@ -44,6 +44,5 @@ export function handleNewTask(todoId, todoValue) {
       todoContent.style.textDecoration = "none";
     }
   });
-
   todosWrapper.append(onetodoWrapper);
 }
