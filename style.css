@@ -50,6 +50,22 @@ header {
     justify-content: center;
     gap: 5px;
 }
+header span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    input[type="date"] {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        appearance: none; 
+        background-color: transparent; 
+        height: 25px;
+        border: none;
+        border-bottom: 1px solid #333;
+        padding: 0 4px;
+        font-size: 14px;
+    }
+}
 header h1 {
     font-size: 32px;
     font-weight: 1200;
@@ -87,9 +103,6 @@ nav ul li {
     align-items: center;
     gap: 5px;
     cursor: pointer;
-}
-nav ul li:hover {
-    background-color: #d7e4ef;
 }
 nav .week {
     font-size: 16px;
@@ -206,14 +219,14 @@ footer button.btn-modal{
 footer button.btn-modal:hover {
     background-color: #509ddc;
 }
-footer span {
+footer form {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
-footer span div {
+footer form div {
     width: auto;
     display: flex;
     flex-direction: column;

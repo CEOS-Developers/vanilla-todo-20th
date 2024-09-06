@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
+    <title>To Do List-yyj0917</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -13,7 +13,10 @@
         <!-- header -->
         <header>
           <h2 class="today"></h2>
-          <h1>Today</h1>
+          <span>
+            <h1>Today</h1>
+            <input type="date" id="date-picker" class="date-picker">
+          </span>
         </header>
         <!-- nav -->
         <nav>
@@ -24,25 +27,26 @@
         <!-- footer -->
         <footer>
           <button class="btn-modal">+</button>
-          <span class="task-add" style="display: none;">
+          <form class="task-form" style="display: none;">
             <div>
               <input
                 type="text"
                 id="task-title"
                 placeholder="Task Title"
+                required
                 />
               <input
                 type="text"
                 id="task-desc"
                 placeholder="Task Description"
+                required
                 />
             </div>
             <div>
-              <button class="btn save">save</button>
-              <button class="btn back">back</button>
-
+              <button type="submit" class="btn save">save</button>
+              <button type="button" class="btn back">back</button>
             </div>
-          </span>
+          </form>
         </footer>
       </div>
     </div>
