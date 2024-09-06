@@ -38,12 +38,12 @@ body {
 .leftNum {
     color: #91D1FF;
     margin-bottom: 8px;
-    /* 폰트 굵기 설정하기 */
+    font-weight: 500;
 }
 
 .day {
     margin-top: 8px;
-    /* 폰트 굵기 설정하기 */
+    font-weight: 500;
 }
 
 .todoList {
