@@ -10,7 +10,7 @@ function getDate() {
   const year = today.getFullYear();
   const month = today.getMonth() + 1;
   const day = today.getDate();
-  return `${year}년 ${month}월 ${day}일`
+  return `⊹ ⋆ ${year}. ${month}. ${day}. ⋆ ⊹`
 }
 date.innerText = getDate();
 
@@ -50,10 +50,12 @@ function showTodo(todo){
   span.innerText = todo.text;
   
   // 완료 버튼
-  todo.done && li.classList.add('done');
+  todo.done && span.classList.add('done');
   const doneBtn = document.createElement('button');
+  doneBtn.innerText = todo.done === true ? '♥' : '♡';
+  doneBtn.classList.add('doneBtn');
   doneBtn.addEventListener('click', () => {
-    li.classList.toggle('done');
+    span.classList.toggle('done');
     todo.done = !todo.done;
     saveTodos();
     renderTodo();
@@ -61,7 +63,8 @@ function showTodo(todo){
   
   // 삭제 버튼
   const delBtn = document.createElement('button');
-  delBtn.innerText = 'x';
+  delBtn.innerText = '×';
+  delBtn.classList.add('delBtn');
   delBtn.addEventListener('click', deleteTodo)
 
   li.appendChild(doneBtn);

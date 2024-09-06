@@ -20,18 +20,107 @@ body {
   justify-content: center;
   font-family:'pretendard';
   color: white;
+  height: 100vh;
 }
 
-h2 {
-  color: #24d46d;
+#date {
   font-weight: 800;
+  font-size: 40px;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 25px;
+  text-shadow: 0px 0px 15px #ff3898;
+}
+
+.container {
+  width: 60%;
+  height: 60%;
+  border: 0.3px solid #ff3898;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 70px #691940;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+::-webkit-scrollbar{
+  width: 0;
+}
+
+.title {
+  padding-bottom: 20px;
+  /* border-bottom: 1px solid #24d46d; */
+  display: flex;
+  justify-content: space-between;
+}
+
+input {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 15px 5px;
+  border-bottom: 1px solid hsl(0, 0%, 100%);
+  font-size: 18px;
+}
+
+input:focus {
+  border-bottom: 1px solid #29e678;
+}
+
+h2, #todo-count {
+  color: #24d46d;
+  font-size: 50px;
+  font-weight: 800;
+  margin: 0;
+  text-shadow: 0px 0px 10px #24d46d;
 }
 
 span {
-  color: #ff3898;
+  color: white;
   font-weight: 400;
 }
 
-ul li.done {
+ul {
+  overflow: auto;
+  list-style: none;
+  margin: 0;
+  padding: 20px 0;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin-bottom: 13px;
+  padding: 5px;
+  position: relative;
+  align-items: center;
+}
+
+ul span {
+  all: unset;
+  font-size: 18px;
+}
+
+ul span.done {
   text-decoration: line-through;
+}
+
+.delBtn {
+  all: unset;
+  font-size: 30px;
+  position: absolute;
+  right: 15px;
+  bottom: 4px;
+  cursor: pointer;
+}
+
+.doneBtn {
+  all: unset;
+  font-size: 25px;
+  color: #ff3898;
+  margin: 0 10px;
 }
