@@ -1,23 +1,41 @@
-// 현재 시간 업데이트 함수
+// 현재 시간 업데이트
 const updateTime = () => {
   const today = document.querySelector(".today");
   const now = new Date();
   today.innerHTML = now.toLocaleString();
 };
+setInterval(updateTime, 1000); // 1초마다 호출
 
-// 1초마다 호출
-setInterval(updateTime, 1000);
+/* 로컬 스토리지 데이터 처리 */
+const saveToLocalStorage = (key, data) => {
+  localStorage.setItem(key, JSON.stringify(data));
+};
 
+const loadFromLocalStorage = (key) => {
+  const data = localStorage.getItem(key);
+  return data ? JSON.parse(data) : [];
+};
+
+let todos = loadFromLocalStorage("todos");
+let dones = loadFromLocalStorage("dones");
+
+const initTodoList = () => {
+  todos.forEach((todo) => printTodo(todo));
+  dones.forEach((done) => printDidItem(done));
+};
+
+/* todo 입력, 토글, 삭제 */
 const form = document.querySelector(".inputBox");
 const showMessage = document.querySelector(".showInput");
 
 const init = () => {
   form.addEventListener("submit", addTodoItem);
   showMessage.addEventListener("click", toggleForm);
+  initTodoList(); // 초기 로드 시 로컬 스토리지 데이터 불러오기
 };
 
 // 입력창 초기 숨김
-// form.style.display = "none";
+form.style.display = "none";
 
 // 입력창 열고 닫는 함수
 const toggleForm = () => {
@@ -34,9 +52,14 @@ const toggleForm = () => {
 const addTodoItem = (event) => {
   event.preventDefault();
   const todoInput = document.querySelector(".input").value;
-  if (todoInput) printTodo(todoInput);
+  if (todoInput) {
+    todos.push(todoInput);
+    saveToLocalStorage("todos", todos); // 저장
+    printTodo(todoInput);
+  }
 };
 
+// 할 일 화면에 출력 함수
 const printTodo = (text) => {
   const todoList = document.createElement("li");
   const todoItem = document.createElement("div");
@@ -73,9 +96,12 @@ const printTodo = (text) => {
   document.querySelector(".input").value = "";
 };
 
+// 할 일 삭제 함수
 const deleteTodoItem = (e) => {
   const target = e.target.parentNode.parentNode.parentNode;
-  console.log(target);
+  const text = target.querySelector(".todo-text").innerText;
+  todos = todos.filter((todo) => todo !== text);
+  saveToLocalStorage("todos", todos); // 업데이트
   document.querySelector(".todoList").removeChild(target);
 };
 
@@ -84,10 +110,12 @@ const todoToDid = (e) => {
   const target = e.target.parentNode.parentNode.parentNode;
   const todoText = target.querySelector(".todo-text").innerText;
   deleteTodoItem(e);
+  dones.push(todoText);
+  saveToLocalStorage("dones", dones); // 한 일 저장
   printDidItem(todoText);
 };
 
-// 한 일
+// 한 일 출력 함수
 const printDidItem = (text) => {
   const didList = document.createElement("li");
   const didItem = document.createElement("div");
@@ -122,16 +150,22 @@ const printDidItem = (text) => {
   document.querySelector(".didList").appendChild(didList);
 };
 
+// 한 일 삭제 함수
 const deleteDidItem = (e) => {
   const target = e.target.parentNode.parentNode.parentNode;
-  console.log(target);
+  const text = target.querySelector(".did-text").innerText;
+  dones = dones.filter((done) => done !== text);
+  saveToLocalStorage("dones", dones); // 업데이트
   document.querySelector(".didList").removeChild(target);
 };
 
+// 한 일을 다시 할 일로 옮기기
 const didToTodo = (e) => {
   const target = e.target.parentNode.parentNode.parentNode;
   const didText = target.querySelector(".did-text").innerText;
   deleteDidItem(e);
+  todos.push(didText);
+  saveToLocalStorage("todos", todos); // 할 일 저장
   printTodo(didText);
 };
 
