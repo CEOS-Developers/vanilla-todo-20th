@@ -1,7 +1,23 @@
 const addBtn = document.querySelector('.addBtn');
 const TodoInput = document.querySelector('.TodoInput');
 const todoList = document.querySelector('.todoList');
-const todoForm = document.querySelector('.writeTodoForm');
+const todoForm = document.getElementById('todoForm');
+
+let todos = [];
+
+// localStorage에서 todos 불러오기
+function loadTodos() {
+    const savedTodos = localStorage.getItem('todos');
+    if (savedTodos) {
+        todos = JSON.parse(savedTodos);
+        todos.forEach(todo => createTodoElement(todo.text, todo.completed));
+    }
+}
+
+// localStorage에 todos 저장
+function saveTodos() {
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
 
 function addTodo(e) {
     e.preventDefault();
@@ -9,7 +25,9 @@ function addTodo(e) {
     const Todo = TodoInput.value.trim();
     
     if (Todo) {
-        createTodoElement(Todo);
+        createTodoElement(Todo, false);
+        todos.push({ text: Todo, completed: false });
+        saveTodos();
         TodoInput.value = '';
     } else {
         alert('To Do를 입력하세요');
@@ -19,37 +37,57 @@ function addTodo(e) {
 todoForm.addEventListener('submit', addTodo);
 
 // 투두 추가 함수
-function createTodoElement(Todo) {
+function createTodoElement(Todo, isCompleted) {
     const listItem = document.createElement('li');
+    listItem.classList.add('animate-slide-down');
+    if (isCompleted) {
+        listItem.classList.add('completed');
+    }
     
     // 완료 토글 아이콘
     const toggleIcon = document.createElement('img');
-    toggleIcon.src = './icon/notCheck.svg';
-    toggleIcon.alt = 'Toggle unComplete';
+    toggleIcon.src = isCompleted ? './icon/checkComplete.svg' : './icon/notCheck.svg';
+    toggleIcon.alt = isCompleted ? 'Toggle Complete' : 'Toggle unComplete';
     toggleIcon.classList.add('toggle-icon');
 
     // 투두 텍스트
     const todoText = document.createElement('span');
     todoText.textContent = Todo;
+    if (isCompleted) {
+        todoText.classList.add('completed-text');
+    }
     
     toggleIcon.addEventListener('click', () => {
         listItem.classList.toggle('completed');
         todoText.classList.toggle('completed-text');
-        if (listItem.classList.contains('completed')) {
+        const isNowCompleted = listItem.classList.contains('completed');
+        if (isNowCompleted) {
             toggleIcon.src = './icon/checkComplete.svg';
             toggleIcon.alt = 'Toggle Complete';
         } else {
             toggleIcon.src = './icon/notCheck.svg';
             toggleIcon.alt = 'Toggle unComplete';
         }
+        // localStorage 업데이트
+        const index = todos.findIndex(item => item.text === Todo);
+        if (index !== -1) {
+            todos[index].completed = isNowCompleted;
+            saveTodos();
+        }
     });
     
     // 삭제 버튼
     const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = '삭제';
+    deleteBtn.textContent = 'Del';
     deleteBtn.classList.add('delete-btn');
     deleteBtn.addEventListener('click', () => {
-        todoList.removeChild(listItem);
+        listItem.classList.add('animate-fade-out');
+        setTimeout(() => {
+            todoList.removeChild(listItem);
+            // localStorage에서 삭제
+            todos = todos.filter(item => item.text !== Todo);
+            saveTodos();
+        }, 300);
     });
     
     // HTML 구조에 맞게 요소 추가
@@ -71,9 +109,11 @@ function formatDateKorean(date) {
     return `${month} ${day}일 ${dayOfWeek}`;
 }
 
-// 페이지 로드 시 오늘 날짜 표시
+// 페이지 로드 시 실행
 document.addEventListener('DOMContentLoaded', () => {
     const todayDateElement = document.getElementById('todayDate');
     const today = new Date();
     todayDateElement.textContent = formatDateKorean(today);
+
+    loadTodos(); // localStorage에서 todos 불러오기
 });
