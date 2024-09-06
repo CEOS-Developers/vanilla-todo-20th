@@ -1,6 +1,8 @@
 import { newTaskBtn, todolistWrapper } from "../constants/document.js";
 import { confirmBtn, newTodoInputContainer } from "../constants/newTask.js";
 import { handleNewTask } from "./handleNewTasks.js";
+import { todoInput } from "../constants/newTask.js";
+import { handleStoreTask } from "./storeTask.js";
 
 function onClickNewTaskBtn() {
   newTaskBtn.addEventListener("click", () => {
@@ -10,8 +12,12 @@ function onClickNewTaskBtn() {
 
 //확인 눌렀을 때
 function onClickConfirmBtn() {
-  confirmBtn.addEventListener("click", () => {
-    handleNewTask();
+  confirmBtn.addEventListener("click", (e) => {
+    let todoId = Math.random();
+    handleNewTask(todoId, todoInput.value);
+    handleStoreTask(todoId, todoInput.value);
+
+    todoInput.value = "";
   });
 }
 
