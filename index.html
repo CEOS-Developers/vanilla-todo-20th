@@ -17,15 +17,15 @@
 
         <div class="input">
           <form id="inputForm">
-            <input type="text" class="TodoInput" placeholder="To Do 입력 후 Enter">
+            <input type="text" class="todoInput" placeholder="To Do 입력 후 Enter">
           </form>
         </div>
 
         <ul class="todoList">
           <li>
-            <img src="./src/unchecked.svg">
-            <span>세오스 1주차 과제하기</span>
-            <img src="./src/deleteBtn.svg">
+            <img src="./src/${checkedStatus}.svg" class="toggleComplete">
+            <span style="color: #000000;">세오스 1주차 과제 하기</span>
+            <img src="./src/deleteBtn.svg" class="deleteBtn" style="display: none;">
           </li>
         </ul>
       </div>
