@@ -13,27 +13,35 @@
         <h1 class="today"></h1>
       </header>
       <nav class="box-style">
-        <span class="intro ment-style">당신의 할 일을 작성해보세요 ✏️</span>
-        <button class="showInput ment-style">입력창 불러오기</button>
+        <span class="ment-style">당신의 할 일을 작성해보세요 ✏️</span>
+        <button class="show-input ment-style">입력창 불러오기</button>
       </nav>
-
-      <main class="contents box-style">
+      <main class="box-style">
         <section class="todo">
-          <div class="todoTop">
+          <div class="todo-top">
             <h2 class="ment-style">What I have to do</h2>
-            <form class="inputBox box-style">
+            <form class="input-box box-style">
               <input class="input" />
-              <button class="submitBtn">작성하기</button>
+              <button class="submit-btn">작성하기</button>
             </form>
           </div>
           <ul class="todoList"></ul>
         </section>
-
         <section class="did">
           <h2 class="ment-style">What I did</h2>
           <ul class="didList"></ul>
         </section>
       </main>
+      <footer>
+        <span>
+          <span class="today"><b>T</b>otal: </span>
+          <span class="count"></span>
+        </span>
+        <span>
+          <span class="today"> <b>A</b>ccomplishment: </span>
+          <span class="accomplishment"></span>
+        </span>
+      </footer>
     </div>
   </body>
   <script src="script.js"></script>

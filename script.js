@@ -25,8 +25,8 @@ const initTodoList = () => {
 };
 
 /* todo 입력, 토글, 삭제 */
-const form = document.querySelector(".inputBox");
-const showMessage = document.querySelector(".showInput");
+const form = document.querySelector(".input-box");
+const showMessage = document.querySelector(".show-input");
 
 const init = () => {
   form.addEventListener("submit", addTodoItem);
