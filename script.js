@@ -8,7 +8,7 @@ function saveTodos() {
   localStorage.setItem('todos', JSON.stringify(todos))
 };
 
-// todo 정렬 함수
+// todo 정렬 함수 (완료된 일은 밑으로 배치)
 function sortTodo() {
   todos.sort((a, b) => a.done - b.done);
 }
