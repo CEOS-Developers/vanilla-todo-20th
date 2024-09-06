@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const formattedDate = today.toLocaleDateString("ko-KR", options); // options 형식의 한국어 날짜
     document.querySelector(".Date").textContent = formattedDate;
     // .Date 요소의 textcontent를 formattedDate으로 설정
+  
     const todoInput = document.querySelector("input"); // input 요소 가지고 오기
     const todoBox = document.querySelector(".todo-box"); // class가 .todo-box인 요소를 가지고 오기
     const submitBtn = document.getElementById("submitbtn"); // id가 submitbtn인 요소를 가지고 오기
@@ -53,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
       checkbox.checked = isCompleted; // isCompleted가 true라면 checkbox가 체크 됨
 
       checkbox.addEventListener("change", function () { // checkbox의 상태가 바뀔 때, 즉 checked의 속성이 변경될 때 (사용자가 체크박스를 체크하거나 해제할 때) 실행될 이벤트 핸들러
+          toggleTodoCompletion(todoText);
           li.querySelector("span").style.textDecoration = checkbox.checked ? "line-through" : "none";
       }); // <li> 요소의 첫 번째 <span> 요소를 찾아 스타일링. 만약 체크박스가 체크 되어있으면? 선을 긋고 해제되어 있으면 선을 없앤다!
 
@@ -66,11 +68,33 @@ document.addEventListener("DOMContentLoaded", function () {
       const deleteBtn = document.createElement("button"); // 새로운 <button> 요소 생성
       deleteBtn.textContent = "삭제"; // deleteBtn의 텍스트 내용을 삭제라고 지정
       deleteBtn.classList.add("delete-btn");
-      
+      deleteBtn.addEventListener("click", function () { // 버튼이 클릭 되었을 때 실행될 함수!!
+          deleteTodo(todoText, li);
+      });
+
       li.appendChild(checkbox); // 새로 만든 요소 (체크박스, 텍스트, 삭제 버튼)을 <li> 요소에 추가해서 하나의 todo 항목 완성!
       li.appendChild(todoSpan); // 할 일 텍스트를 담은 <span> 요소 추가
       li.appendChild(deleteBtn); // 삭제 버튼 추가
       todoBox.appendChild(li); // <ul> 요소를 불러 온 todoBox에 <li>들 추가
+  }
+
+  function toggleTodoCompletion(todoText) { // 배열 todoList에서 특정 할 일 항목의 완료 상태를 토글시키는 역할
+      todoList = todoList.map((todo) => { // map 메서드는 배열의 각 항목을 변형하여 새로운 배열을 반환한다!!
+          if (todo.text === todoText) { // 순회하던 배열의 특정 원소의 text와 display 함수에서 props로 전달 받은 체크 상태가 변경된 todo의 text가 동일하다면?
+              return { ...todo, completed: !todo.completed }; // 그 원소의 completed 상태 토글
+          }
+          return todo;
+      });
+      saveStorage(); // todoList가 업데이트 되어 새롭게 localStorage에 저장
+  }
+
+  function deleteTodo(todoText, li) {
+      todoList = todoList.filter((todo) => todo.text !== todoText); // 배열을 순회하면서 props로 전달 받은 text와 동일하지 않은 text만 걸러서 즉, 전달받은 text는 존재하지 않는 배열을 새롭게 만들어 낸다
+      saveStorage();
+      li.classList.add('remove');  // 삭제될 요소의 스타일링을 위해 class name 부여
+      li.addEventListener('animationend', () => {
+            li.remove();  // 애니메이션 끝난 후 실제로 제거
+        });
   }
 
   setting();

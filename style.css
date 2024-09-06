@@ -69,6 +69,7 @@ input{
 input::-webkit-input-placeholder {
     color: rgb(94, 169, 139);
 }
+
 #submitbtn {
     position: absolute; /* 부모 요소인 form 기준으로 배치 */
     top: 50%; /* 부모 요소의 상단에서 50% 지점에 배치 */
@@ -113,6 +114,34 @@ input::-webkit-input-placeholder {
   .todo-box .todoSpan{
     width: 15.625rem;
   }
+
+  /* 새로운 요소가 추가될 때 slide 되는 애니메이션 */
+  @keyframes slideDown {
+    0% {
+        opacity: 0; /* 요소가 처음에는 투명함 */
+        transform: translateY(-20px); /* 애니메이션이 시작 될 때, 처음엔 위쪽에 위치 */
+    }
+    100% {
+        opacity: 1; /* 투명도가 0에서 1로 변화 */
+        transform: translateY(0); /* 제자리로 이동, 원래의 위치! */
+    }
+} /* 결국 위에서 아래로 부드럽게 이동하는 효과*/
+
+/* 요소가 삭제될 때 애니메이션 */
+.todo-box .remove {
+    animation: fadeOut 0.3s forwards; /* fadeOut 애니메이션의 마지막 상태가 계속 유지 됨. 즉 투명한 상태로!! */
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1; /* 처음에는 완전히 보이고 */
+        transform: scale(1); /* 원래 크기임 */
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9); /* 요소가 원래 크기의 90%로 축소 */
+    }
+}
 
   
 .todo-box .delete-btn {
