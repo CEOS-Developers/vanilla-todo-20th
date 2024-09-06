@@ -1,1 +1,42 @@
 /* 본인의 디자인 감각을 최대한 발휘해주세요! */
+body {
+  background-color: rgb(43, 43, 43);
+  margin: 0px;
+}
+
+.nav {
+  background-color: black;
+  border: 32px;
+  font-size: 12px;
+  color: aliceblue;
+  border-bottom: 1px solid rgb(130, 130, 130);
+}
+
+.content {
+  display: flex;
+  height: 100vh;
+  width: 50%;
+  margin: 0 auto;
+  flex-direction: column;
+  background-color: black;
+
+  .title {
+    display: flex;
+    .mainTitle {
+      font-size: 18px;
+      color: white;
+    }
+  }
+  #date {
+    font-size: 8px;
+    color: rgb(220, 220, 220);
+  }
+
+  form {
+    display: flex;
+    flex-direction: row;
+    border-radius: 12px;
+    background-color: rgb(47, 47, 47);
+    border: 16px;
+  }
+}
