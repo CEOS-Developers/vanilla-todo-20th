@@ -1,3 +1,4 @@
+/*라이브러리*/
 * {
     margin: 0;
     padding: 0;
@@ -11,13 +12,58 @@
  } 
 
  /**/
-
- .todoContainer {
-    background-color: #f1f3ff;}
-header{
+ /**/
+ .container{
+  
+ }
+ /**/
+ header{
     padding-left: 45px;
-    
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    background-color: #788bff;
+    color: white;
+    font-size: 2rem;
+    box-shadow: inset 0 0 20px #7e8dea;
+    border-bottom: 1px solid #7e8dea;
+   
 }
+/**/
+ .todoContainer {
+    background-color: #f1f3ff;
+    width: 50%;
+    height: 90vh;
+    margin:0 auto;
+    border-radius: 5px;
+    padding: 30px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+.todoContainer > .title {
+    font-size: 23px;
+    font-weight: 700;
+    color: #788bff;
+}
+.todoContainer > #todayDate {
+    margin-top: 5px;
+    font-size: 13px;
+    color:#8790ca;
+}
+/**/
+.WriteForm{
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #c3ccff;
+}
+.check_icon {
+    width: 20px;
+    height: 20px;
+    margin: 0 15px 0 0px;
+    fill: #788bff;
+
 
 
 .completed-text {

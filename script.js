@@ -2,8 +2,6 @@ const addBtn = document.querySelector('.addBtn');
 const TodoInput = document.querySelector('.TodoInput');
 const todoList = document.querySelector('.todoList');
 const todoForm = document.querySelector('.writeTodoForm');
-const todoIcon = document.querySelector('.todoForm img');
-
 
 function addTodo(e) {
     e.preventDefault();
@@ -20,16 +18,20 @@ function addTodo(e) {
 
 todoForm.addEventListener('submit', addTodo);
 
-//투두 추가 함수 
+// 투두 추가 함수
 function createTodoElement(Todo) {
     const listItem = document.createElement('li');
     
     // 완료 토글 아이콘
     const toggleIcon = document.createElement('img');
-    toggleIcon.src = './icon/notCheck.svg';  
+    toggleIcon.src = './icon/notCheck.svg';
     toggleIcon.alt = 'Toggle unComplete';
     toggleIcon.classList.add('toggle-icon');
 
+    // 투두 텍스트
+    const todoText = document.createElement('span');
+    todoText.textContent = Todo;
+    
     toggleIcon.addEventListener('click', () => {
         listItem.classList.toggle('completed');
         todoText.classList.toggle('completed-text');
@@ -41,10 +43,6 @@ function createTodoElement(Todo) {
             toggleIcon.alt = 'Toggle unComplete';
         }
     });
-    
-    // 투두 텍스트
-    const todoText = document.createElement('span');
-    todoText.textContent = Todo;
     
     // 삭제 버튼
     const deleteBtn = document.createElement('button');
@@ -60,7 +58,6 @@ function createTodoElement(Todo) {
     listItem.appendChild(deleteBtn);
     todoList.appendChild(listItem);
 }
-
 
 // 날짜 표시 함수
 function formatDateKorean(date) {
