@@ -58,6 +58,8 @@ function loadTodoList(date) {
 
     todoListContainer.appendChild(todoItem);
   });
+
+  updateLeftNum(todoList)
 }
 
 // 투두 추가
@@ -77,6 +79,12 @@ document.querySelector('#inputForm').addEventListener('submit', (e) => {
   addTodoItem(currentDate, todoInput.value);
   todoInput.value = '';
 });
+
+// 남은 할 일 개수
+function updateLeftNum(todoList) {
+  const leftNum = todoList.filter(todo => !todo.completed).length;
+  document.querySelector('.leftNum').innerHTML = `할 일 ${leftNum}개`;
+}
 
 // 날짜 이동
 let currentDate = new Date();
