@@ -20,9 +20,12 @@ function showTodo(todo){
   span.innerText = todo.text;
   
   // 완료 버튼
+  todo.done && li.classList.add('done');
   const doneBtn = document.createElement('button');
   doneBtn.addEventListener('click', () => {
     li.classList.toggle('done');
+    todo.done = !todo.done;
+    saveTodos();
   })
   
   // 삭제 버튼
@@ -52,7 +55,8 @@ function addTodo(e){
   else{
     const newTodoObj = {
       id : Date.now(),
-      text : newTodo
+      text : newTodo,
+      done : false
     }
 
     todos.push(newTodoObj);
