@@ -84,7 +84,8 @@ ul {
   margin-bottom: 15px;
 }
 
-.todo-text {
+.todo-text,
+.did-text {
   color: #458fff;
   font-family: "Pretendard";
   font-weight: 300;
