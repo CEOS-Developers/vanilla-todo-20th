@@ -1,4 +1,4 @@
-// 현재 시간 업데이트
+/* 날짜 및 현재 시각 */
 const updateTime = () => {
   const today = document.querySelector(".today");
   const now = new Date();
@@ -6,167 +6,140 @@ const updateTime = () => {
 };
 setInterval(updateTime, 1000); // 1초마다 호출
 
-/* 로컬 스토리지 데이터 처리 */
+/* localStorage 데이터 처리 */
+
+// localStorage에 항목 저장하기 함수
 const saveToLocalStorage = (key, data) => {
   localStorage.setItem(key, JSON.stringify(data));
 };
 
+// localStorage의 항목 불러오기 함수
 const loadFromLocalStorage = (key) => {
   const data = localStorage.getItem(key);
   return data ? JSON.parse(data) : [];
 };
 
-let todos = loadFromLocalStorage("todos");
-let dones = loadFromLocalStorage("dones");
+let todos = loadFromLocalStorage("todos"); // 할 일 배열
+let dones = loadFromLocalStorage("dones"); // 한 일 배열
 
+// localStorage의 항목으로 초기화하기 함수
 const initTodoList = () => {
-  todos.forEach((todo) => printTodo(todo));
-  dones.forEach((done) => printDidItem(done));
+  todos.forEach((todo) => printItem(todo, "todo"));
+  dones.forEach((done) => printItem(done, "did"));
 };
 
-/* todo 입력, 토글, 삭제 */
-const form = document.querySelector(".input-box");
-const showMessage = document.querySelector(".show-input");
+/* 공용 함수 */
+// 버튼 생성하기 함수
+const createBtn = (src, className, clickHandler) => {
+  const btn = document.createElement("button");
+  const img = document.createElement("img");
+  img.setAttribute("src", src);
+  btn.appendChild(img);
+  btn.setAttribute("class", className);
+  btn.addEventListener("click", clickHandler);
 
+  return btn;
+};
+
+// 항목 출력하기 함수
+const printItem = (text, type) => {
+  const list = document.querySelector(`.${type}List`);
+  const item = document.createElement("li");
+  const itemContent = document.createElement("div");
+  const itemText = document.createElement("span");
+  itemText.innerText = text;
+  itemText.className = `${type}-text`;
+
+  // 체크 버튼 생성하기
+  const checkBtn = createBtn(
+    type === "todo" ? "images/empty_checkbox.png" : "images/full_checkbox.png",
+    "todo-check",
+    type === "todo" ? todoToDid : didToTodo
+  );
+
+  // 삭제 버튼 생성하기
+  const deleteBtn = createBtn(
+    "images/delete_btn.png",
+    "todo-del",
+    type === "todo" ? deleteTodoItem : deleteDidItem
+  );
+
+  // 항목 구성하기
+  itemContent.className = "todo-item";
+  itemContent.appendChild(checkBtn);
+  itemContent.appendChild(itemText);
+  itemContent.appendChild(deleteBtn);
+
+  item.appendChild(itemContent);
+  list.appendChild(item);
+};
+
+// 할 일 추가하기 함수
+const addTodoItem = (event) => {
+  event.preventDefault();
+  const todoInput = document.querySelector(".input").value; // 입력값
+  if (todoInput) {
+    todos.push(todoInput);
+    saveToLocalStorage("todos", todos); // 업데이트된 todos 배열을 localStorage에 저장
+    printItem(todoInput, "todo");
+    document.querySelector(".input").value = ""; // 입력창 초기화
+  }
+};
+
+// 항목 삭제하기 함수
+const deleteItem = (e, classSelector, array, key, listSelector) => {
+  const target = e.target.closest("li");
+  const text = target.querySelector(classSelector).innerText;
+  array = array.filter((item) => item !== text);
+  saveToLocalStorage(key, array);
+  document.querySelector(listSelector).removeChild(target);
+  return array;
+};
+
+const deleteTodoItem = (e) => {
+  todos = deleteItem(e, ".todo-text", todos, "todos", ".todoList");
+};
+
+const deleteDidItem = (e) => {
+  dones = deleteItem(e, ".did-text", dones, "dones", ".didList");
+};
+
+// 할 일에서 한 일로 이동 함수
+const todoToDid = (e) => {
+  const target = e.target.closest("li");
+  const todoText = target.querySelector(".todo-text").innerText;
+  todos = deleteItem(e, ".todo-text", todos, "todos", ".todoList");
+  dones.push(todoText);
+  saveToLocalStorage("dones", dones); // 한 일 저장
+  printItem(todoText, "did");
+};
+
+// 한 일에서 할 일로 이동 함수
+const didToTodo = (e) => {
+  const target = e.target.closest("li");
+  const didText = target.querySelector(".did-text").innerText;
+  dones = deleteItem(e, ".did-text", dones, "dones", ".didList");
+  todos.push(didText);
+  saveToLocalStorage("todos", todos); // 할 일 저장
+  printItem(didText, "todo");
+};
+
+/* todo 입력, 체크, 삭제 */
+const form = document.querySelector(".input-box"); // 입력창 폼 요소
+const showMessage = document.querySelector(".show-input"); // 입력창 열고 닫는 버튼 요소
+
+// 입력창 열고 닫기 함수
+const toggleForm = () => {
+  form.style.display = form.style.display === "none" ? "flex" : "none";
+  showMessage.innerHTML =
+    form.style.display === "none" ? "입력창 불러오기" : "입력창 다시닫기";
+};
+
+// 이벤트 리스너 등록 및 기존 데이터 불러오기 함수
 const init = () => {
   form.addEventListener("submit", addTodoItem);
   showMessage.addEventListener("click", toggleForm);
-  initTodoList(); // 초기 로드 시 로컬 스토리지 데이터 불러오기
-};
-
-// 입력창 초기 숨김
-form.style.display = "none";
-
-// 입력창 열고 닫는 함수
-const toggleForm = () => {
-  if (form.style.display === "none") {
-    form.style.display = "flex";
-    showMessage.innerHTML = "입력창 다시닫기";
-  } else {
-    form.style.display = "none";
-    showMessage.innerHTML = "입력창 불러오기";
-  }
-};
-
-// 할 일 추가 함수
-const addTodoItem = (event) => {
-  event.preventDefault();
-  const todoInput = document.querySelector(".input").value;
-  if (todoInput) {
-    todos.push(todoInput);
-    saveToLocalStorage("todos", todos); // 저장
-    printTodo(todoInput);
-  }
-};
-
-// 할 일 화면에 출력 함수
-const printTodo = (text) => {
-  const todoList = document.createElement("li");
-  const todoItem = document.createElement("div");
-  const todoCheck = document.createElement("button");
-  const todoDel = document.createElement("button");
-
-  // 입력한 할 일 내용
-  const todoText = document.createElement("span");
-  todoText.innerText = text;
-  todoText.className = "todo-text";
-
-  // 할 일 체크 버튼
-  const todoCheckImg = document.createElement("img");
-  todoCheckImg.setAttribute("src", "images/empty_checkbox.png");
-  todoCheck.appendChild(todoCheckImg);
-  todoCheck.setAttribute("class", "todo-check");
-  todoCheck.addEventListener("click", todoToDid);
-
-  // 할 일 삭제 버튼
-  const todoDelImg = document.createElement("img");
-  todoDelImg.setAttribute("src", "images/delete_btn.png");
-  todoDel.appendChild(todoDelImg);
-  todoDel.setAttribute("class", "todo-del");
-  todoDel.addEventListener("click", deleteTodoItem);
-
-  todoItem.className = "todo-item";
-  todoItem.appendChild(todoCheck);
-  todoItem.appendChild(todoText);
-  todoItem.appendChild(todoDel);
-
-  todoList.appendChild(todoItem);
-
-  document.querySelector(".todoList").appendChild(todoList);
-  document.querySelector(".input").value = "";
-};
-
-// 할 일 삭제 함수
-const deleteTodoItem = (e) => {
-  const target = e.target.parentNode.parentNode.parentNode;
-  const text = target.querySelector(".todo-text").innerText;
-  todos = todos.filter((todo) => todo !== text);
-  saveToLocalStorage("todos", todos); // 업데이트
-  document.querySelector(".todoList").removeChild(target);
-};
-
-// 할 일에서 한 일로 옮기기
-const todoToDid = (e) => {
-  const target = e.target.parentNode.parentNode.parentNode;
-  const todoText = target.querySelector(".todo-text").innerText;
-  deleteTodoItem(e);
-  dones.push(todoText);
-  saveToLocalStorage("dones", dones); // 한 일 저장
-  printDidItem(todoText);
-};
-
-// 한 일 출력 함수
-const printDidItem = (text) => {
-  const didList = document.createElement("li");
-  const didItem = document.createElement("div");
-  const didCheck = document.createElement("button");
-  const didDel = document.createElement("button");
-
-  const didText = document.createElement("span");
-  didText.innerText = text;
-  didText.className = "did-text";
-
-  // 한 일 체크 버튼
-  const didCheckImg = document.createElement("img");
-  didCheckImg.setAttribute("src", "images/full_checkbox.png");
-  didCheck.appendChild(didCheckImg);
-  didCheck.setAttribute("class", "todo-check");
-  didCheck.addEventListener("click", didToTodo);
-
-  // 한 일 삭제 버튼
-  const didDelImg = document.createElement("img");
-  didDelImg.setAttribute("src", "images/delete_btn.png");
-  didDel.appendChild(didDelImg);
-  didDel.setAttribute("class", "todo-del");
-  didDel.addEventListener("click", deleteDidItem);
-
-  didItem.className = "todo-item";
-  didItem.appendChild(didCheck);
-  didItem.appendChild(didText);
-  didItem.appendChild(didDel);
-
-  didList.appendChild(didItem);
-
-  document.querySelector(".didList").appendChild(didList);
-};
-
-// 한 일 삭제 함수
-const deleteDidItem = (e) => {
-  const target = e.target.parentNode.parentNode.parentNode;
-  const text = target.querySelector(".did-text").innerText;
-  dones = dones.filter((done) => done !== text);
-  saveToLocalStorage("dones", dones); // 업데이트
-  document.querySelector(".didList").removeChild(target);
-};
-
-// 한 일을 다시 할 일로 옮기기
-const didToTodo = (e) => {
-  const target = e.target.parentNode.parentNode.parentNode;
-  const didText = target.querySelector(".did-text").innerText;
-  deleteDidItem(e);
-  todos.push(didText);
-  saveToLocalStorage("todos", todos); // 할 일 저장
-  printTodo(didText);
+  initTodoList();
 };
 
 init();
