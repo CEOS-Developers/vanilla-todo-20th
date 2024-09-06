@@ -34,7 +34,7 @@ function loadTodoList(date) {
       <img src="./src/deleteBtn.svg" class="deleteBtn" style="display: none;">
     `;
 
-    // 체크박스
+    // 투두 완료
     todoItem.querySelector('.toggleComplete').addEventListener('click', () => {
       todo.completed = !todo.completed;
       saveTodoList(date, todoList);
