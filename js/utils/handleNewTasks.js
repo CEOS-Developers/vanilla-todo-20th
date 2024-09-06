@@ -1,12 +1,13 @@
 import { todosWrapper } from "../constants/document.js";
-import { todoInput } from "../constants/newTask.js";
+import { handleDeleteStoreTask } from "./storeTask.js";
 
-export function handleNewTask() {
+//element 추가 함수
+export function handleNewTask(todoId, todoValue) {
   let doneBtnContainer = document.createElement("div");
   doneBtnContainer.className = "doneBtnContainer";
 
   let doneBtn = document.createElement("input");
-  doneBtn.id = "doneBtnId" + Math.random();
+  doneBtn.id = todoId;
   doneBtn.type = "checkbox";
 
   let doneBtnLabel = document.createElement("label");
@@ -20,7 +21,10 @@ export function handleNewTask() {
   deleteBtn.type = "button";
   deleteBtn.textContent = "🗑️";
   //삭제
-  deleteBtn.addEventListener("click", () => onetodoWrapper.remove());
+  deleteBtn.addEventListener("click", () => {
+    onetodoWrapper.remove();
+    handleDeleteStoreTask(todoId);
+  });
 
   let onetodoWrapper = document.createElement("li");
   onetodoWrapper.className = "onetodoWrapper";
@@ -31,9 +35,7 @@ export function handleNewTask() {
   onetodoWrapper.append(doneBtnContainer, todoContent, deleteBtn);
 
   //할일 입력됨
-  todoContent.textContent = todoInput.value;
-
-  todoInput.value = "";
+  todoContent.textContent = todoValue;
 
   doneBtn.addEventListener("change", () => {
     if (doneBtn.checked) {
