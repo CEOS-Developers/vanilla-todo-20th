@@ -4,6 +4,7 @@ import { handleNewTask } from "./handleNewTasks.js";
 import { todoInput } from "../constants/newTask.js";
 import { handleStoreTask } from "./storeTask.js";
 
+//NewTask 버튼 눌렀을 때
 function onClickNewTaskBtn() {
   newTaskBtn.addEventListener("click", () => {
     todolistWrapper.appendChild(newTodoInputContainer);
@@ -16,7 +17,6 @@ function onClickConfirmBtn() {
     let todoId = Math.random();
     handleNewTask(todoId, todoInput.value);
     handleStoreTask(todoId, todoInput.value);
-
     todoInput.value = "";
   });
 }
