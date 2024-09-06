@@ -1,9 +1,28 @@
+const date = document.getElementById('date');
+const todoCount = document.getElementById('todo-count');
 const todoForm = document.getElementById('todo-form');
 const todoList = document.getElementById('todo-list');
 const todoInput = document.querySelector('#todo-form input')
 
+// 날짜 함수
+function getDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
+  return `${year}년 ${month}월 ${day}일`
+}
+date.innerText = getDate();
+
+// 개수 함수
+function getTodoCount() {
+  totalTodo = todos.length;
+  doneTodo = todos.filter(todo => todo.done).length;
+  todoCount.innerText = `${doneTodo} / ${totalTodo}`;
+}
+
 // 로컬 스토리지에 저장하기, 불러오기
-let todos = JSON.parse(localStorage.getItem('todos')) || [];
+let todos = (JSON.parse(localStorage.getItem('todos') || [])).filter(todo => todo.date === getDate());
 function saveTodos() {
   localStorage.setItem('todos', JSON.stringify(todos))
 };
@@ -18,6 +37,7 @@ function renderTodo() {
   todoList.innerHTML = '';
   sortTodo();
   todos.forEach(todo => showTodo(todo));
+  getTodoCount();
 }
 
 // todo 항목 표시 함수
@@ -67,7 +87,8 @@ function addTodo(e){
     const newTodoObj = {
       id : Date.now(),
       text : newTodo,
-      done : false
+      done : false,
+      date : getDate()
     }
 
     todos.push(newTodoObj);
