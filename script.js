@@ -1,3 +1,13 @@
+// 현재 시간 업데이트 함수
+const updateTime = () => {
+  const today = document.querySelector(".today");
+  const now = new Date();
+  today.innerHTML = now.toLocaleString();
+};
+
+// 1초마다 호출
+setInterval(updateTime, 1000);
+
 const form = document.querySelector(".inputBox");
 const showMessage = document.querySelector(".showInput");
 

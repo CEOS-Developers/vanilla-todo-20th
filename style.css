@@ -6,6 +6,19 @@
   align-items: center;
 }
 
+header {
+  display: flex;
+  justify-content: flex-end;
+  width: 600px;
+}
+
+.today {
+  color: #85b6ff;
+  font-family: "Pretendard";
+  font-weight: 300;
+  font-size: 15px;
+}
+
 nav {
   width: 600px;
   height: 50px;
@@ -97,5 +110,5 @@ ul {
 }
 
 .todo-del img {
-  width: 10px;
+  width: 12px;
 }
