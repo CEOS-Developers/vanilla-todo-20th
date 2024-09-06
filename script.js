@@ -8,9 +8,19 @@ function saveTodos() {
   localStorage.setItem('todos', JSON.stringify(todos))
 };
 
-// todo 표시 함수
-todos.forEach(todo => showTodo(todo));
+// todo 정렬 함수
+function sortTodo() {
+  todos.sort((a, b) => a.done - b.done);
+}
 
+// todo 렌더링 함수
+function renderTodo() {
+  todoList.innerHTML = '';
+  sortTodo();
+  todos.forEach(todo => showTodo(todo));
+}
+
+// todo 항목 표시 함수
 function showTodo(todo){
   const li = document.createElement('li');
   li.id = todo.id;
@@ -26,6 +36,7 @@ function showTodo(todo){
     li.classList.toggle('done');
     todo.done = !todo.done;
     saveTodos();
+    renderTodo();
   })
   
   // 삭제 버튼
@@ -62,6 +73,7 @@ function addTodo(e){
     todos.push(newTodoObj);
     saveTodos();
     showTodo(newTodoObj);
+    renderTodo();
 
     todoInput.value = '';
   }
@@ -75,4 +87,7 @@ function deleteTodo(e){
 
   todos = todos.filter(todo => todo.id !== parseInt(li.id));
   saveTodos();
+  renderTodo();
 };
+
+renderTodo();
