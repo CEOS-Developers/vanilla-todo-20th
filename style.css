@@ -67,3 +67,34 @@ input {
   border-radius: 30px;
   border: 1px solid #85b6ff;
 }
+
+ul li {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.todo-text {
+  color: #458fff;
+  font-family: "Pretendard";
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.todo-check img {
+  width: 20px;
+}
+
+.todo-del img {
+  width: 10px;
+}
