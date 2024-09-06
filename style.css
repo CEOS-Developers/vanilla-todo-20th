@@ -1,1 +1,88 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Pretendard";
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #F3FAFF;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    min-width: 550px;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.main {
+    text-align:left;
+    background: white;
+    padding: 7% 15% 7% 15%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.leftNum {
+    color: #91D1FF;
+    margin-bottom: 8px;
+    /* 폰트 굵기 설정하기 */
+}
+
+.day {
+    margin-top: 8px;
+    /* 폰트 굵기 설정하기 */
+}
+
+.todoList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.todoList li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #C0C0C0;
+}
+
+.todoList img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.TodoInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #91D1FF;
+    border-radius: 10px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+img {
+    cursor: pointer;
+}
+
+img[src*="toYesterday"],
+img[src*="toTomorrow"] {
+    width: 40px;
+    height: 40px;
+}
