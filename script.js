@@ -2,44 +2,73 @@ const todoForm = document.getElementById('todo-form');
 const todoList = document.getElementById('todo-list');
 const todoInput = document.querySelector('#todo-form input')
 
-todoForm.addEventListener('submit', addTodo);
+// 로컬 스토리지에 저장하기, 불러오기
+let todos = JSON.parse(localStorage.getItem('todos')) || [];
+function saveTodos() {
+  localStorage.setItem('todos', JSON.stringify(todos))
+};
+
+// todo 표시 함수
+todos.forEach(todo => showTodo(todo));
+
+function showTodo(todo){
+  const li = document.createElement('li');
+  li.id = todo.id;
+
+  // todo 내용
+  const span = document.createElement('span');
+  span.innerText = todo.text;
+  
+  // 완료 버튼
+  const doneBtn = document.createElement('button');
+  doneBtn.addEventListener('click', () => {
+    li.classList.toggle('done');
+  })
+  
+  // 삭제 버튼
+  const delBtn = document.createElement('button');
+  delBtn.innerText = 'x';
+  delBtn.addEventListener('click', deleteTodo)
+
+  li.appendChild(doneBtn);
+  li.appendChild(span);
+  li.appendChild(delBtn);
+
+  todoList.appendChild(li);
+}
 
 // 할 일 추가 함수
-function addTodo(){
+todoForm.addEventListener('submit', addTodo);
 
-  event.preventDefault();
+function addTodo(e){
 
-  if(todoInput.value==''){
+  e.preventDefault();
+  const newTodo = todoInput.value;
+
+  if(newTodo===''){
     alert("할 일을 입력해주세요!");
   }
 
   else{
-    const li = document.createElement('li');
+    const newTodoObj = {
+      id : Date.now(),
+      text : newTodo
+    }
 
-    const span = document.createElement('span');
-    span.innerText = todoInput.value;
+    todos.push(newTodoObj);
+    saveTodos();
+    showTodo(newTodoObj);
+
     todoInput.value = '';
-    
-    const doneBtn = document.createElement('button');
-    doneBtn.addEventListener('click', () => {
-      li.classList.toggle('done');
-    })
-    
-    const delBtn = document.createElement('button');
-    delBtn.innerText = 'x';
-    delBtn.addEventListener('click', deleteTodo)
-
-    li.appendChild(doneBtn);
-    li.appendChild(span);
-    li.appendChild(delBtn);
-
-    todoList.appendChild(li);
   }
 };
 
 
 // 할 일 삭제 함수
 function deleteTodo(e){
-  li = e.target.parentElement;
+  const li = e.target.parentElement;
   li.remove();
-}
+
+  todos = todos.filter(todo => todo.id !== parseInt(li.id));
+  saveTodos();
+};
