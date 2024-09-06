@@ -69,3 +69,20 @@ input{
 input::-webkit-input-placeholder {
     color: rgb(94, 169, 139);
 }
+#submitbtn {
+    position: absolute; /* 부모 요소인 form 기준으로 배치 */
+    top: 50%; /* 부모 요소의 상단에서 50% 지점에 배치 */
+    transform: translateY(-50%); /* 자신의 높이의 50%만큼 위쪽으로 이동, 수직 중앙 정렬 시키기 */
+    right: 1.25rem; /* 부모 요소의 오른쪽에서 1.25rem */
+    background-color: transparent;
+    color: rgb(94, 169, 139);
+    padding: 5px 10px;
+    border: 1.5px solid rgb(94, 169, 139);
+    border-radius: 0.625rem;
+    cursor: pointer;
+}
+
+#submitbtn:hover {
+    background-color:#b5b6b779;
+    font-weight: bold;
+}
