@@ -6,8 +6,8 @@ body {
 
 .nav {
   background-color: black;
-  border: 32px;
-  font-size: 12px;
+  padding: 8px 32px;
+  font-size: 18px;
   color: aliceblue;
   border-bottom: 1px solid rgb(130, 130, 130);
 }
@@ -15,6 +15,7 @@ body {
 .content {
   display: flex;
   height: 100vh;
+  padding: 16px;
   width: 50%;
   margin: 0 auto;
   flex-direction: column;
@@ -33,10 +34,40 @@ body {
   }
 
   form {
+    border: 16px;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+    height: 52px;
+    padding: 0 16px;
+    gap: 8px;
     border-radius: 12px;
-    background-color: rgb(47, 47, 47);
-    border: 16px;
+    color: rgb(150, 130, 224);
+    background-color: rgb(37, 37, 37);
+
+    input {
+      flex-grow: 1;
+      color: white;
+      background-color: rgb(37, 37, 37);
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+    input::placeholder {
+      color: rgb(150, 130, 224);
+    }
+
+    .submitBtn {
+      /* font-size: 12px; */
+      border-radius: 12px;
+      border: 1px solid rgb(150, 130, 224);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .submitBtn:hover {
+      background-color: rgb(19, 18, 18);
+    }
   }
 }
