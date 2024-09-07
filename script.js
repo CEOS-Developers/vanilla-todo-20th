@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 const date = document.getElementById('date');
 const todoCount = document.getElementById('todo-count');
 const todoForm = document.getElementById('todo-form');
@@ -119,3 +121,4 @@ function deleteTodo(e){
 };
 
 renderTodo();
+});
