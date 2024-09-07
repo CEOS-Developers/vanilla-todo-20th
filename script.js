@@ -1,5 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-
 const date = document.getElementById('date');
 const todoCount = document.getElementById('todo-count');
 const todoForm = document.getElementById('todo-form');
@@ -24,10 +22,22 @@ function getTodoCount() {
 }
 
 // 로컬 스토리지에 저장하기, 불러오기
-let todos = (JSON.parse(localStorage.getItem('todos') || [])).filter(todo => todo.date === getDate());
-function saveTodos() {
-  localStorage.setItem('todos', JSON.stringify(todos))
-};
+// let todos = (JSON.parse(localStorage.getItem('todos') || [])).filter(todo => todo.date === getDate());
+// function saveTodos() {
+//   localStorage.setItem('todos', JSON.stringify(todos))
+// };
+
+let todos = [];
+
+try {
+  const storedTodos = localStorage.getItem('todos');
+  todos = storedTodos ? JSON.parse(storedTodos) : [];
+} catch (e) {
+  console.error('Error parsing todos from localStorage:', e);
+  todos = [];
+}
+
+todos = todos.filter(todo => todo.date === getDate());
 
 // todo 정렬 함수 (완료된 일은 밑으로 배치)
 function sortTodo() {
@@ -121,4 +131,3 @@ function deleteTodo(e){
 };
 
 renderTodo();
-});
