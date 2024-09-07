@@ -27,17 +27,22 @@ function getTodoCount() {
 //   localStorage.setItem('todos', JSON.stringify(todos))
 // };
 
-let todos = [];
 
-try {
-  const storedTodos = localStorage.getItem('todos');
-  todos = storedTodos ? JSON.parse(storedTodos) : [];
-} catch (e) {
-  console.error('Error parsing todos from localStorage:', e);
-  todos = [];
-}
+  let todos = [];
 
-todos = todos.filter(todo => todo.date === getDate());
+  try {
+    const storedTodos = localStorage.getItem('todos');
+    todos = storedTodos ? JSON.parse(storedTodos) : [];
+  } catch (e) {
+    console.error('로컬 스토리지 에러', e);
+    todos = [];
+  }
+
+  todos = todos.filter(todo => todo.date === getDate());
+
+  function saveTodos() {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }
 
 // todo 정렬 함수 (완료된 일은 밑으로 배치)
 function sortTodo() {
