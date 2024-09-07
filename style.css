@@ -1,1 +1,187 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
+html{
+    font-family: "Pretendard";
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+ li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+ } 
+
+ /*헤더*/
+ header{
+    padding-left: 45px;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    background-color: #788bff;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 0 100px 100px #d6ddff;
+    border-bottom: 1px solid #7e8dea;
+   
+}
+/**/
+
+/*투두 시작*/
+ .todoContainer {
+    background-color: #f1f3ff;
+    width: 50%;
+    height: 90vh;
+    margin:0 auto;
+    border-radius: 5px;
+    padding: 30px;
+    box-shadow: inset 0 0 20px #d6ddff;;
+}
+
+.todoContainer > .title {
+    font-size: 23px;
+    font-weight: 700;
+    color: #788bff;
+}
+
+.todoContainer > #todayDate {
+    margin-top: 5px;
+    font-size: 13px;
+    color:#8790ca;
+}
+
+.WriteForm{
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #d6ddff;
+}
+
+.check_icon {
+    width: 20px;
+    height: 20px;
+    margin: 0 15px 0 0px;
+}
+
+.writeTodoForm {
+    width: 100%;
+    height: 52px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 15px 0 15px;
+}
+
+.writeTodoForm > .TodoInput {
+    width: 100%;
+    height: 50px;
+    outline: none;
+    border: none;
+    color: #788bff;
+    background-color: transparent;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.writeTodoForm > .TodoInput::placeholder{
+    color: #788bff;
+}
+
+.writeTodoForm > .addBtn, .delete-btn {
+    cursor: pointer;
+    background-color: #788bff;
+    width: 36px;
+    height: 22px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    color: white;
+    padding: 2px;
+    border: none;
+    transition: background-color .3s, color .3s;
+}
+
+.writeTodoForm > .addBtn:hover, .delete-btn:hover{
+    background-color: white;
+    color: #788bff;
+}   
+
+.todoList{
+    width:100%;
+}
+
+.todoList li {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #d6ddff;
+    height: 50px;
+    padding: 0 15px 0 15px;
+    color: #788bff;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.todoList .completed-text {
+    text-decoration: line-through;
+    color: #7d808e;
+}
+
+.todoList .toggle-icon, .delete-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.todoList .toggle-icon {
+    margin-right: 10px;
+}
+
+.todoList .delete-icon {
+    margin-left: auto;
+}
+
+.todoList span {
+    flex-grow: 1;
+}
+
+/* 할일 추가 애니메이션*/
+@keyframes slideDownFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-slide-down {
+    animation: slideDownFadeIn 0.2s ease-out forwards;
+  }
+  /* */
+  
+  /* 할일 삭제 애니메이션 */
+  @keyframes fadeOutScaleDown {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.9);
+      transform: translateY(+10px);
+    }
+  }
+  .animate-fade-out {
+    animation: fadeOutScaleDown 0.2s ease-out forwards;
+  }
+ /* */
