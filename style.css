@@ -23,18 +23,21 @@ body {
 
   .title {
     display: flex;
+    flex-direction: column;
     .mainTitle {
       font-size: 18px;
       color: white;
+      margin-bottom: 0;
     }
-  }
-  #date {
-    font-size: 8px;
-    color: rgb(220, 220, 220);
+    #date {
+      font-size: 10px;
+      color: rgb(220, 220, 220);
+    }
   }
 
   form {
     border: 16px;
+    margin-top: 12px;
     display: flex;
     flex-direction: row;
     align-items: center;
