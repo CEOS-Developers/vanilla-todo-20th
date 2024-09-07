@@ -21,7 +21,6 @@ const updateTime = () => {
 setInterval(updateTime, 1000); // 1초마다 호출
 
 /* localStorage 데이터 처리 */
-
 // localStorage에 항목 저장하기 함수
 const saveToLocalStorage = (key, data) => {
   localStorage.setItem(key, JSON.stringify(data));
