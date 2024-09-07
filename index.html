@@ -8,7 +8,29 @@
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <img src="./src/toYesterday.svg">
+      <div class="main">
+        <p class="leftNum">할 일 n개</p>
+        <h1 class="date">날짜</h1>
+        <p class="day">요일</p>
+
+        <div class="input">
+          <form id="inputForm">
+            <input type="text" class="todoInput" placeholder="To Do 입력 후 Enter">
+          </form>
+        </div>
+
+        <ul class="todoList">
+          <li>
+            <img src="./src/${checkedStatus}.svg" class="toggleComplete">
+            <span style="color: #000000;">세오스 1주차 과제 하기</span>
+            <img src="./src/deleteBtn.svg" class="deleteBtn" style="display: none;">
+          </li>
+        </ul>
+      </div>
+      <img src="./src/toTomorrow.svg">
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
