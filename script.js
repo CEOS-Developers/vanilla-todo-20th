@@ -40,6 +40,7 @@ todoForm.addEventListener('submit', addTodo);
 function createTodoElement(Todo, isCompleted) {
     const listItem = document.createElement('li');
     listItem.classList.add('animate-slide-down');
+    
     if (isCompleted) {
         listItem.classList.add('completed');
     }
@@ -90,7 +91,6 @@ function createTodoElement(Todo, isCompleted) {
         }, 300);
     });
     
-    // HTML 구조에 맞게 요소 추가
     listItem.appendChild(toggleIcon);
     listItem.appendChild(todoText);
     listItem.appendChild(deleteBtn);

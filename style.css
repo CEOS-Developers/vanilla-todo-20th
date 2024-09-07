@@ -1,8 +1,10 @@
 /*라이브러리*/
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
 html{
     font-family: "Pretendard";
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -15,12 +17,7 @@ html{
     align-items: center;
  } 
 
- /**/
- /**/
- .container{
-  
- }
- /**/
+ /*헤더*/
  header{
     padding-left: 45px;
     height: 10vh;
@@ -29,11 +26,12 @@ html{
     background-color: #788bff;
     color: white;
     font-size: 2rem;
-    box-shadow: inset 0 0 20px #7e8dea;
+    box-shadow: 0 0 100px 100px #d6ddff;
     border-bottom: 1px solid #7e8dea;
    
 }
-/**/
+
+/*투두 시작*/
  .todoContainer {
     background-color: #f1f3ff;
     width: 50%;
@@ -41,19 +39,21 @@ html{
     margin:0 auto;
     border-radius: 5px;
     padding: 30px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 20px #d6ddff;;
 }
+
 .todoContainer > .title {
     font-size: 23px;
     font-weight: 700;
     color: #788bff;
 }
+
 .todoContainer > #todayDate {
     margin-top: 5px;
     font-size: 13px;
     color:#8790ca;
 }
-/**/
+
 .WriteForm{
     width: 100%;
     border-radius: 10px;
@@ -62,11 +62,13 @@ html{
     flex-direction: column;
     background-color: #d6ddff;
 }
+
 .check_icon {
     width: 20px;
     height: 20px;
     margin: 0 15px 0 0px;
 }
+
 .writeTodoForm {
     width: 100%;
     height: 52px;
@@ -75,6 +77,7 @@ html{
     align-items: center;
     padding: 0 15px 0 15px;
 }
+
 .writeTodoForm > .TodoInput {
     width: 100%;
     height: 50px;
@@ -85,9 +88,11 @@ html{
     font-weight: 700;
     font-size: 0.8rem;
 }
+
 .writeTodoForm > .TodoInput::placeholder{
     color: #788bff;
 }
+
 .writeTodoForm > .addBtn, .delete-btn {
     cursor: pointer;
     background-color: #788bff;
@@ -100,13 +105,16 @@ html{
     border: none;
     transition: background-color .3s, color .3s;
 }
+
 .writeTodoForm > .addBtn:hover, .delete-btn:hover{
     background-color: white;
     color: #788bff;
 }   
+
 .todoList{
     width:100%;
 }
+
 .todoList li {
     width: 100%;
     border-radius: 10px;
@@ -145,6 +153,7 @@ html{
     flex-grow: 1;
 }
 
+/* 할일 추가 애니메이션*/
 @keyframes slideDownFadeIn {
     from {
       opacity: 0;
@@ -158,7 +167,7 @@ html{
   .animate-slide-down {
     animation: slideDownFadeIn 0.2s ease-out forwards;
   }
-  /*  */
+  /* */
   
   /* 할일 삭제 애니메이션 */
   @keyframes fadeOutScaleDown {
