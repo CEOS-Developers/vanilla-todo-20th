@@ -108,6 +108,7 @@ const renderToDoList = () => {
   });
 };
 
+// 시작시 렌더링
 window.onload = function () {
   renderToDoList();
 };
