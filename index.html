@@ -4,11 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla Todo</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
-
   <body>
-    <div class="container"></div>
+    <div id="date"></div>
+    <div class="container">
+      <div class="title">
+        <h2>To-Do</h2>
+        <div id="todo-count"></div>
+      </div>
+      <form id="todo-form">
+        <input type="text" placeholder="오늘 해야 할 일은?"/>
+      </form>
+      <ul id="todo-list"></ul>
+    </div>
   </body>
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </html>
