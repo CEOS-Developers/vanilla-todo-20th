@@ -12,6 +12,26 @@ body {
   border-bottom: 1px solid rgb(130, 130, 130);
 }
 
+.mainButton {
+  /* font-size: 12px; */
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 1px;
+  color: rgb(150, 130, 224);
+  border: 1px solid rgb(150, 130, 224);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.material-icons {
+  color: rgb(150, 130, 224);
+  cursor: pointer;
+}
+.mainButton:hover {
+  background-color: rgb(19, 18, 18);
+}
+
 .content {
   display: flex;
   height: 100vh;
@@ -60,17 +80,31 @@ body {
     input::placeholder {
       color: rgb(150, 130, 224);
     }
+  }
+}
 
-    .submitBtn {
-      /* font-size: 12px; */
-      border-radius: 12px;
-      border: 1px solid rgb(150, 130, 224);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .submitBtn:hover {
-      background-color: rgb(19, 18, 18);
-    }
+ul {
+  /* background-color: aliceblue; */
+  display: flex;
+  flex-direction: column-reverse;
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+.toDoItem {
+  /* border: 16px; */
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  height: 52px;
+  padding: 0 16px;
+  gap: 8px;
+  border-radius: 12px;
+  color: white;
+  background-color: rgb(37, 37, 37);
+  .toDo {
+    flex-grow: 1;
+    color: white;
   }
 }

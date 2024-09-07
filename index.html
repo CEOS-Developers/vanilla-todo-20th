@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Icons"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -24,22 +28,31 @@
           <p class="mainTitle">오늘 할 일</p>
           <p id="date"></p>
         </div>
-        <form id="toDoForm">
-          <label for="form">✔️ </label>
+        <div id="todoContainer">
+          <form id="toDoForm">
+            <div for="form">✔️</div>
 
-          <input
-            type="text"
-            aria-labelledby="form"
-            placeholder="할 일 추가"
-          />
-          <div
-            class="submitBtn"
-            type="submit"
-          >
-            추가
-          </div>
-        </form>
-        <div id="toDoContainer"></div>
+            <input
+              type="text"
+              id="inputValue"
+              placeholder="할 일 추가"
+            />
+            <div
+              class="mainButton"
+              type="submit"
+            >
+              추가
+            </div>
+          </form>
+          \
+          <ul id="toDoList">
+            <li class="toDoItem">
+              <span class="material-icons">check_circled</span>
+
+              <div>sjfdkl</div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </body>
