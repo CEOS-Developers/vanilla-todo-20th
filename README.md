@@ -2,8 +2,7 @@
 
 <br>
 
-## 🪄 결과물
-[🔗 배포 링크](vanilla-todo-20th-ys.vercel.app)
+## [🪄 결과물](https://vanilla-todo-20th-ys.vercel.app/)
 
 ![screen](./screen.png)
 
