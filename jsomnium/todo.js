@@ -29,3 +29,9 @@ function addTodo() {
         newTodoInput.value = '';
     }
 }
+// 엔터키로 할 일 추가 가능
+newTodoInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        addTodo();
+    }
+});
