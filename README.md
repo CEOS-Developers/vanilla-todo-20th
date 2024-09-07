@@ -2,7 +2,7 @@
 
 <br>
 
-## [🪄 결과물](https://vanilla-todo-19th-dh.vercel.app/)
+## [🪄 결과물](vanilla-todo-20th-ys.vercel.app)
 
 ![screen](./screen.png)
 
