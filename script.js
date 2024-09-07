@@ -11,14 +11,13 @@ const days = [
 ];
 
 const toDoList = document.getElementById('toDoList');
+const dateElement = document.getElementById('date');
 
 // 날짜 세팅하기
 const date = new Date();
 const month = date.getMonth() + 1;
 const day = date.getDate();
 const getDay = days[date.getDay()];
-
-let dateElement = document.getElementById('date');
 
 dateElement.textContent = `${month}월 ${day}일 ${getDay}`;
 
@@ -47,7 +46,7 @@ document
       toDos.push(newToDo);
       saveToDos();
       createToDoItem(toDo, id);
-      inputField.value = ''; // 입력 필드 초기화
+      inputField.value = '';
     }
   });
 
@@ -86,7 +85,6 @@ const createIsCompleteButton = () => {
 // 투두 삭제 버튼 추가
 const createDeleteButton = (item, id) => {
   const deleteButton = document.createElement('div');
-  console.log(id);
   deleteButton.textContent = '삭제';
   deleteButton.classList.add('mainButton');
   deleteButton.onclick = function () {
