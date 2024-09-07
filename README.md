@@ -4,7 +4,7 @@
 
 ## [🪄 결과물](https://vanilla-todo-20th-ys.vercel.app/)
 
-![screen](./screen.png)
+![Screen](screen.png)
 
 ### 🩵 구현 기능
 - 할 일 추가, 완료, 삭제 기능
