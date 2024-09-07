@@ -1,3 +1,4 @@
+/* 폰트 */
 @font-face {
 	font-family: 'pretendard';
 	font-weight: 800;
@@ -10,6 +11,29 @@
 	font-weight: 400;
 	font-display: swap;
 	src: local('Pretendard Regular'), url(./fonts/Pretendard-Regular.woff2) format('woff2');
+}
+
+/* 애니메이션 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px); 
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); 
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-14px)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
 }
 
 body {
@@ -38,19 +62,20 @@ body {
   max-width: 550px;
   height: 60%;
   border: 0.3px solid #ff3898;
-  background: rgba(255, 255, 255, 0.1);
+  background: #ffffff1a;
   box-shadow: 0 0 70px #691940;
   border-radius: 40px;
   display: flex;
   flex-direction: column;
   padding: 40px 30px 40px 40px;
+  opacity: 0; 
+  animation: fadeInUp 1s ease forwards;
 }
 
 .title {
-  padding-bottom: 20px;
+  padding: 0 10px 20px 0;
   display: flex;
   justify-content: space-between;
-  padding-right: 10px;
 }
 
 h2, #todo-count {
@@ -75,8 +100,8 @@ input {
   margin-bottom: 20px;
 }
 
-input:focus {
-  border-bottom: 1px solid #29e678;
+input:focus, input:hover {
+  border-bottom: 1px solid #f854a3a2;
 }
 
 span {
@@ -89,12 +114,16 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0 10px 0 0;
+  opacity: 0;
+  animation: fadeInDown 1s ease forwards;
+  animation-delay: 0.8s;
 }
+
 
 ul li {
   display: flex;
   align-items: center;
-  border: 1px solid #8ec8a64f;
+  border: 1px solid #ffffff85;
   border-radius: 20px;
   margin-bottom: 13px;
   padding: 5px;
@@ -110,33 +139,37 @@ ul span {
 
 ul span.done {
   text-decoration: line-through;
-  color: #a1a1a1;
+  color: #a3a3a3;
 }
 
 ::-webkit-scrollbar {
   width: 7px;
-
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ff389887;
+  background-color: hsla(0, 0%, 100%, 0.158);
   border-radius: 4px; 
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #c52b7677;
+  background-color: #e640916b;
   border-radius: 4px; 
 }
 
 .delBtn {
   all: unset;
+  color: #29e678;
   font-size: 30px;
-  text-shadow: 0px 0px 10px #ff3898;
+  text-shadow: 0px 0px 10px #ffffff;
   position: absolute;
   right: 15px;
   bottom: 4px;
   cursor: pointer;
   cursor: url(http://www.rw-designer.com/cursor-extern.php?id=128620), pointer;
+}
+
+.delBtn:hover{
+  text-shadow: 0px 0px 13px #ff3898;
 }
 
 .doneBtn {

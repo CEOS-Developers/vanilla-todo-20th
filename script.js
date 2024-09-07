@@ -56,7 +56,7 @@ function showTodo(todo){
   doneBtn.innerText = todo.done === true ? '♥' : '♡';
   doneBtn.onmouseenter = () => doneBtn.innerText = '♥';
   doneBtn.onmouseleave = () => doneBtn.innerText = todo.done ? '♥' : '♡';
-  
+
   doneBtn.classList.add('doneBtn');
   doneBtn.addEventListener('click', () => {
     span.classList.toggle('done');
