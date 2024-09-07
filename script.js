@@ -25,7 +25,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function createList() {
       const newTodo = todoInput.value.trim(); /* 문자열 앞 뒤 공백을 제거하는 trim을 이용, 사용자가 input에 입력한 todo를 저장*/
-      if (newTodo === "") return; /* 사용자가 입력하지 않았으면 함수 종료 */
+      if (newTodo === ""){
+        alert('오늘의 할 일을 적어주세요!🍀');
+        return; /* 사용자가 입력하지 않았으면 함수 종료 */}
+        // 이미 같은 내용의 투두가 있는지 확인
+
+        const isDuplicate = todoList.some((todo) => todo.text === newTodo); //some 메서드, 배열의 각 요소를 순회하면서, 주어진 조건을 만족하는 요소가 하나라도 있으면 true를 반환하고, 조건을 만족하는 요소가 없으면 false를 반환
+        if (isDuplicate) {
+            alert("이미 동일한 투두가 있습니다!👏🏻"); // 알림창으로 중복 투두 알림
+            todoInput.value = "";
+            return; // 중복되면 함수 종료
+        }
 
       todoList.push({ text: newTodo, completed: false }); /* 배열에 입력 값 저장 */
       saveStorage(); /* list에 새로운 todo가 추가 됨으로써 변경되었으니 다시 localStorage에 todoList 저장 */
@@ -69,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
       deleteBtn.textContent = "삭제"; // deleteBtn의 텍스트 내용을 삭제라고 지정
       deleteBtn.classList.add("delete-btn");
       deleteBtn.addEventListener("click", function () { // 버튼이 클릭 되었을 때 실행될 함수!!
+          alert('정말 삭제하시겠습니까?');
           deleteTodo(todoText, li);
       });
 
