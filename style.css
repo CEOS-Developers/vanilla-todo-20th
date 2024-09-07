@@ -1,4 +1,3 @@
-/*라이브러리*/
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
 
 html{
@@ -30,6 +29,7 @@ html{
     border-bottom: 1px solid #7e8dea;
    
 }
+/**/
 
 /*투두 시작*/
  .todoContainer {
@@ -184,3 +184,4 @@ html{
   .animate-fade-out {
     animation: fadeOutScaleDown 0.2s ease-out forwards;
   }
+ /* */
