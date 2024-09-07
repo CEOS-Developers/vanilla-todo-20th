@@ -35,6 +35,7 @@ body {
 
 .container {
   width: 60%;
+  max-width: 550px;
   height: 60%;
   border: 0.3px solid #ff3898;
   background: rgba(255, 255, 255, 0.1);
@@ -42,18 +43,26 @@ body {
   border-radius: 40px;
   display: flex;
   flex-direction: column;
-  padding: 40px;
-}
-
-::-webkit-scrollbar{
-  width: 0;
+  padding: 40px 30px 40px 40px;
 }
 
 .title {
   padding-bottom: 20px;
-  /* border-bottom: 1px solid #24d46d; */
   display: flex;
   justify-content: space-between;
+  padding-right: 10px;
+}
+
+h2, #todo-count {
+  color: #24d46d;
+  font-size: 50px;
+  font-weight: 800;
+  margin: 0;
+  text-shadow: 0px 0px 10px #24d46d;
+}
+
+form {
+  padding-right: 10px;;
 }
 
 input {
@@ -63,18 +72,11 @@ input {
   padding: 15px 5px;
   border-bottom: 1px solid hsl(0, 0%, 100%);
   font-size: 18px;
+  margin-bottom: 20px;
 }
 
 input:focus {
   border-bottom: 1px solid #29e678;
-}
-
-h2, #todo-count {
-  color: #24d46d;
-  font-size: 50px;
-  font-weight: 800;
-  margin: 0;
-  text-shadow: 0px 0px 10px #24d46d;
 }
 
 span {
@@ -86,18 +88,19 @@ ul {
   overflow: auto;
   list-style: none;
   margin: 0;
-  padding: 20px 0;
+  padding: 0 10px 0 0;
 }
 
 ul li {
   display: flex;
   align-items: center;
-  border: 1px solid white;
+  border: 1px solid #8ec8a64f;
   border-radius: 20px;
   margin-bottom: 13px;
   padding: 5px;
   position: relative;
   align-items: center;
+  background-color: #ffffff11;
 }
 
 ul span {
@@ -107,20 +110,41 @@ ul span {
 
 ul span.done {
   text-decoration: line-through;
+  color: #a1a1a1;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff389887;
+  border-radius: 4px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #c52b7677;
+  border-radius: 4px; 
 }
 
 .delBtn {
   all: unset;
   font-size: 30px;
+  text-shadow: 0px 0px 10px #ff3898;
   position: absolute;
   right: 15px;
   bottom: 4px;
   cursor: pointer;
+  cursor: url(http://www.rw-designer.com/cursor-extern.php?id=128620), pointer;
 }
 
 .doneBtn {
   all: unset;
   font-size: 25px;
   color: #ff3898;
+  text-shadow: 0px 0px 5px #ff3898;
   margin: 0 10px;
+  cursor: url(http://www.rw-designer.com/cursor-extern.php?id=128618), pointer;
+  /* cursor: url(http://www.rw-designer.com/cursor-extern.php?id=92171), pointer; */
 }

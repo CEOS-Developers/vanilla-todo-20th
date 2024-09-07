@@ -52,7 +52,11 @@ function showTodo(todo){
   // 완료 버튼
   todo.done && span.classList.add('done');
   const doneBtn = document.createElement('button');
+
   doneBtn.innerText = todo.done === true ? '♥' : '♡';
+  doneBtn.onmouseenter = () => doneBtn.innerText = '♥';
+  doneBtn.onmouseleave = () => doneBtn.innerText = todo.done ? '♥' : '♡';
+  
   doneBtn.classList.add('doneBtn');
   doneBtn.addEventListener('click', () => {
     span.classList.toggle('done');
