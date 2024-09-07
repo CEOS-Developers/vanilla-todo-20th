@@ -6,7 +6,6 @@ body {
 .container {
   width: 100%;
   max-width: 37.5rem;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,6 +40,13 @@ nav {
   margin-bottom: 1.25rem;
 }
 
+hr {
+  width: 38%;
+  height: 0.01rem;
+  background-color: #458fff;
+  border: 0;
+}
+
 main {
   width: 100%;
   display: flex;
@@ -58,7 +64,7 @@ main {
 @keyframes slideDownFadeIn {
   from {
     opacity: 0;
-    transform: translateY(-20px); /* 위에서 아래로 */
+    transform: translateY(-1.25rem); /* 위에서 아래로 */
   }
   to {
     opacity: 1;
@@ -74,7 +80,7 @@ main {
 
   to {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-1.25rem);
   }
 }
 
@@ -101,6 +107,7 @@ input {
   width: 70%;
   border: transparent;
   font-family: "Pretendard";
+  color: #85b6ff;
 }
 
 input:focus {
@@ -153,7 +160,7 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   align-self: flex-start;
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 /*todo 항목 스타일*/
@@ -162,6 +169,7 @@ footer {
   display: flex;
   align-items: center;
   margin-bottom: 0.938rem;
+  box-sizing: border-box;
 }
 
 .todo-text,
@@ -173,10 +181,18 @@ footer {
 }
 
 .todo-check img {
+  display: block;
   width: 1.25rem;
+  margin-right: 0.6rem;
+}
+
+.todo-del {
+  width: 0.688rem;
+  box-sizing: border-box;
 }
 
 .todo-del img {
-  height: 0.688rem;
-  padding-bottom: 0.125rem;
+  width: 0.688rem;
+  display: block;
+  padding-bottom: 0.25rem;
 }

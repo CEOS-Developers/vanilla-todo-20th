@@ -2,8 +2,22 @@
 const updateTime = () => {
   const today = document.querySelector(".today");
   const now = new Date();
-  today.innerHTML = now.toLocaleString();
+
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  };
+
+  // 요일, 날짜 및 시각 포맷 적용
+  today.innerHTML = now.toLocaleString("ko-KR", options);
 };
+
 setInterval(updateTime, 1000); // 1초마다 호출
 
 /* localStorage 데이터 처리 */
@@ -89,7 +103,7 @@ const printItem = (text, type) => {
 // 할 일 추가하기 함수
 const addTodoItem = (event) => {
   event.preventDefault();
-  const todoInput = document.querySelector(".input").value; // 입력값
+  const todoInput = document.querySelector(".input").value.trim(); // 입력값 공백 확인
   if (todoInput) {
     todos.push(todoInput);
     saveToLocalStorage("todos", todos); // 업데이트된 todos 배열을 localStorage에 저장
@@ -146,7 +160,7 @@ const didToTodo = (e) => {
 const form = document.querySelector(".input-box"); // 입력창 폼 요소
 const showMessage = document.querySelector(".show-input"); // 입력창 열고 닫는 버튼 요소
 
-// 입력창 열고 닫기 함수
+// 애니메이션 적용한 입력창 열고 닫기 함수
 const toggleForm = () => {
   if (form.classList.contains("show")) {
     form.classList.remove("show");
@@ -172,10 +186,10 @@ const toggleForm = () => {
 
 // 이벤트 리스너 등록 및 기존 데이터 불러오기 함수
 const init = () => {
-  form.addEventListener("submit", addTodoItem);
-  showMessage.addEventListener("click", toggleForm);
   initTodoList();
   updateCounts();
+  form.addEventListener("submit", addTodoItem);
+  showMessage.addEventListener("click", toggleForm);
 };
 
 init();
