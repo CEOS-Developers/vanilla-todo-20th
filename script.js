@@ -22,27 +22,23 @@ function getTodoCount() {
 }
 
 // 로컬 스토리지에 저장하기, 불러오기
-// let todos = (JSON.parse(localStorage.getItem('todos') || [])).filter(todo => todo.date === getDate());
+let todos = [];
+
+try {
+  todos = JSON.parse(localStorage.getItem('todos')) || [];
+} catch (e) {
+  todos = [];
+}
+todos = todos.filter(todo => todo.date === getDate());
+
+function saveTodos() {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+// let todos = (JSON.parse(localStorage.getItem('todos') ?? [])).filter(todo => todo.date === getDate());
 // function saveTodos() {
 //   localStorage.setItem('todos', JSON.stringify(todos))
-// };
-
-
-  let todos = [];
-
-  try {
-    const storedTodos = localStorage.getItem('todos');
-    todos = storedTodos ? JSON.parse(storedTodos) : [];
-  } catch (e) {
-    console.error('로컬 스토리지 에러', e);
-    todos = [];
-  }
-
-  todos = todos.filter(todo => todo.date === getDate());
-
-  function saveTodos() {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }
+// }; <-- JSON 오류가 났던 코드입니다. 왜 이 코드로 하면 오류가 났는지 알아가는 과정에서 새로 배운 것들이 있어 코드 리뷰하시는 분도 보시라고 남겨 놓습니다.
 
 // todo 정렬 함수 (완료된 일은 밑으로 배치)
 function sortTodo() {
