@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function setting() {
       loadStorage(); // localStorage에 저장된 todoList의 todo들 불러오기
       submitBtn.addEventListener("click", function (event) {
-          event.preventDefault();
+          event.preventDefault(); // input에 값 입력 후 추가 버튼을 눌러도 새로고침 되지 않도록.
           createList();
       });
   }

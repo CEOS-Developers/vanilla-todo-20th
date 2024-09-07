@@ -21,7 +21,12 @@ header{
     justify-content: center; /* 수평 정렬 */
 }
 
-h1, h2{
+h1{
+    display: flex;
+    margin: 0;
+    text-shadow: 0 5px 5px rgba(0, 0, 0, 0.205);
+}
+h2{
     display: flex;
     margin: 0;
 }
@@ -29,10 +34,12 @@ h1, h2{
 main{
     display: flex;
     flex-direction: column;
-    width: 30rem;
-    height: 100%; /* 화면의 100% 높이로 고정 */
+    max-width: 30rem;
+    width: auto;
+    height: 90%; /* 화면의 100% 높이로 고정 */
     overflow-y: scroll; /* 할 일이 많아지면 스크롤이 생기도록 설정 */
     box-shadow: 0 0.875rem 1.75rem rgba(0,0,0,0.25), 0 0.625rem 0.625rem rgba(0,0,0,0.22);
+    border-radius: 2rem;
     /*box-shadow: [x-offset] [y-offset] [blur-radius] [spread-radius] [color]; 깊이감과 입체감을 더하기 위해 2개 그림자 사용*/
 }
 
@@ -47,7 +54,7 @@ main::-webkit-scrollbar {
     flex-direction: column;
     margin: 3.125rem;
     gap: 0.3125rem;
-    color: rgb(110, 190, 110);
+    color: rgba(84, 170, 84, 0.922);
 }
 .date{
     display: flex;
