@@ -47,7 +47,7 @@ function createTodoElement(Todo, isCompleted) {
     
     // 완료 토글 아이콘
     const toggleIcon = document.createElement('img');
-    toggleIcon.src = isCompleted ? './icon/checkComplete.svg' : './icon/notCheck.svg';
+    toggleIcon.src = isCompleted ? './icon/checkComplete.svg' : 'https://raw.githubusercontent.com/ryu-won/vanilla-todo-20th/40e5a4dcd0113eadd85034cc953aa3fa97de4527/icon/NotCheck.svg';
     toggleIcon.alt = isCompleted ? 'Toggle Complete' : 'Toggle unComplete';
     toggleIcon.classList.add('toggle-icon');
 
@@ -66,7 +66,7 @@ function createTodoElement(Todo, isCompleted) {
             toggleIcon.src = './icon/checkComplete.svg';
             toggleIcon.alt = 'Toggle Complete';
         } else {
-            toggleIcon.src = './icon/notCheck.svg';
+            toggleIcon.src = 'https://raw.githubusercontent.com/ryu-won/vanilla-todo-20th/40e5a4dcd0113eadd85034cc953aa3fa97de4527/icon/NotCheck.svg';
             toggleIcon.alt = 'Toggle unComplete';
         }
         // localStorage 업데이트
