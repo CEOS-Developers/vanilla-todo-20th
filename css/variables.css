@@ -1,0 +1,18 @@
+:root {
+  --background: #121212;
+
+  --open-column-background: #31627e1a;
+  --in-progress-column-background: #7267451a;
+  --done-column-background: #2a5f2d1a;
+  --open-column-border: #0d5580;
+  --in-progress-column-border: #785e17;
+  --done-column-border: #0b5c18;
+
+  --subject-background: #121212ee;
+
+  --text-color: #ffffff;
+  --cancel-text-color: #505050;
+
+  --border: #505050;
+  --button-border: #ffffff;
+}

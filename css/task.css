@@ -1,0 +1,34 @@
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.task-list button {
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+
+  border: 1px solid var(--button-border);
+  border-radius: 1rem;
+  outline: none;
+
+  color: var(--text-color);
+  white-space: nowrap;
+
+  cursor: pointer;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task p {
+  flex: 1;
+}
+
+.isCompleted > p {
+  color: var(--cancel-text-color);
+  text-decoration: line-through;
+}

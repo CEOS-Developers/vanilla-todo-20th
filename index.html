@@ -1,14 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla Todo</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/kanban.css" />
+    <link rel="stylesheet" href="css/subject.css" />
+    <link rel="stylesheet" href="css/task.css" />
+    <link rel="stylesheet" href="css/variables.css" />
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="wrapper">
+      <div class="container">
+        <header>
+          <h1 id="title" class="title"></h1>
+        </header>
+
+        <div class="kanban-board">
+          <section class="board-column" id="open-column">
+            <h2>Open</h2>
+            <hr class="open-hr" />
+            <ul class="subject-list" id="open-subject-list"></ul>
+          </section>
+
+          <section class="board-column" id="in-progress-column">
+            <h2>In Progress</h2>
+            <hr class="in-progress-hr" />
+            <ul class="subject-list" id="in-progress-subject-list"></ul>
+          </section>
+
+          <section class="board-column" id="done-column">
+            <h2>Done</h2>
+            <hr class="done-hr" />
+            <ul class="subject-list" id="done-subject-list"></ul>
+          </section>
+        </div>
+      </div>
+    </div>
   </body>
-  <script src="script.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/models/subject.js"></script>
+  <script src="js/models/task.js"></script>
+  <script src="js/viewModels/subjectViewModel.js"></script>
+  <script src="js/viewModels/taskViewModel.js"></script>
+  <script src="js/constant.js"></script>
+  <script src="js/utils/index.js"></script>
 </html>

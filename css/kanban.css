@@ -1,0 +1,73 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.kanban-board {
+  display: flex;
+  gap: 1rem;
+
+  width: 100%;
+}
+
+.kanban-board section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  flex: 1;
+
+  height: fit-content;
+  padding: 1rem;
+
+  border: 3px solid;
+  border-radius: 1rem;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    max-width: 600px;
+  }
+
+  .kanban-board {
+    flex-direction: column;
+  }
+}
+
+#open-column {
+  background-color: var(--open-column-background);
+  border-color: var(--open-column-border);
+}
+
+#in-progress-column {
+  background-color: var(--in-progress-column-background);
+  border-color: var(--in-progress-column-border);
+}
+
+#done-column {
+  background-color: var(--done-column-background);
+  border-color: var(--done-column-border);
+}
+
+.open-hr {
+  border: 1px solid var(--open-column-border);
+}
+
+.in-progress-hr {
+  border: 1px solid var(--in-progress-column-border);
+}
+
+.done-hr {
+  border: 1px solid var(--done-column-border);
+}
