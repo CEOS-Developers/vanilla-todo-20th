@@ -59,9 +59,8 @@ header span {
         -moz-appearance: textfield;
         appearance: none; 
         background-color: transparent; 
-        height: 25px;
         border: none;
-        border-bottom: 1px solid #333;
+        box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 1);
         padding: 0 4px;
         font-size: 14px;
     }
@@ -114,6 +113,8 @@ nav .day {
     font-weight: 900;
     color: #333;
 }
+
+/* 선택된 날짜 task-item에 적용되는 스타일 */
 nav ul li.selected {
     border-radius: 0;
     color: #89bfeb;
@@ -136,8 +137,17 @@ main {
     overflow: auto;
     border-top: 2px solid #f1f1f1;
     border-bottom: 2px solid #f1f1f1;
-    /* background-color: aquamarine; */
 }
+/* scroll bar hide */
+.task-list {
+    -ms-overflow-style: none; /* IE 및 Edge에서 스크롤바 숨김 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨김 */
+}
+/* Webkit 기반 브라우저(Chrome, Safari 등)에서 스크롤바 숨김 */
+.task-list::-webkit-scrollbar {
+    display: none;
+}
+
 main article {
     width: 100%;
     height: auto;
@@ -155,7 +165,7 @@ main article {
         display: flex;
         flex-direction: column;
         gap: 5px;
-
+        overflow-wrap: break-word;
         .task-time {
             position: absolute;
             top: 5px;

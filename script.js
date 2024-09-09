@@ -10,10 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const taskAddForm = document.querySelector('.task-form');
     const backBtn = document.querySelector('.back');
     const datePicker = document.getElementById('date-picker');
+    const ulElement = document.querySelector('.week-days');
 
-    let selectedDate = getFormattedDate(currentDate);  // selectedDate 초기값은 오늘 날짜
 
-    // 상단 날짜 업데이트 함수
     function updateDisplayDate(date) {
         today.innerText = date.toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     }
@@ -25,6 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const day = ('0' + date.getDate()).slice(-2);
         return `${year}-${month}-${day}`;
     }
+
+    let selectedDate = getFormattedDate(currentDate);  // selectedDate 초기값은 오늘 날짜
+
+    // 상단 날짜 업데이트 함수
 
     // input의 초기 값을 오늘 날짜로 설정
     datePicker.value = selectedDate;
@@ -38,15 +41,26 @@ document.addEventListener('DOMContentLoaded', function () {
         loadTasks(selectedDate); // 선택된 날짜의 할 일 불러오기
     });
 
+    
+
+
     // 일주일 날짜 생성, 오늘 날짜 표시
     function loadWeekDays(selectedDateObj = currentDate) {
         weekDays.innerHTML = ''; 
         updateDisplayDate(selectedDateObj);      
-          
-        // 날짜 계산
-        const firstDayOfWeek = new Date(selectedDateObj);
-        firstDayOfWeek.setDate(selectedDateObj.getDate() - selectedDateObj.getDay() + 1); // 월요일(0: 일요일, 1: 월요일)
 
+        // 날짜 계산 주간 첫번째 날 웡요일 설정로직
+        const firstDayOfWeek = new Date(selectedDateObj);
+        const dayOfWeek = selectedDateObj.getDay();
+
+        // 일요일인 경우 특별 처리
+        if (dayOfWeek === 0) {
+            firstDayOfWeek.setDate(selectedDateObj.getDate() - 6); // 일요일일 경우 전주의 월요일을 설정
+        } else {
+            firstDayOfWeek.setDate(selectedDateObj.getDate() - dayOfWeek + 1); // 월요일 설정
+        }
+
+        
         for (let i = 0; i < 7; i++) {
             const day = new Date(firstDayOfWeek);
             day.setDate(firstDayOfWeek.getDate() + i);
@@ -63,18 +77,12 @@ document.addEventListener('DOMContentLoaded', function () {
             daySpan.className = 'day';
             daySpan.innerText = day.getDate(); 
     
+            // dateKey 설정
             dayElement.dataset.dateKey = dateKey; 
-            dayElement.addEventListener('click', () => {
-                selectDate(dayElement); 
-                selectedDate = dateKey;
-                datePicker.value = dateKey;
-                loadTasks(dateKey); 
-            });
 
             // Today selected set
             if (dateKey === selectedDateObj.toISOString().split('T')[0]) {
                 dayElement.classList.add('selected');
-                // selectedDate = dateKey; 
                 loadTasks(selectedDate); 
             }
     
@@ -83,6 +91,17 @@ document.addEventListener('DOMContentLoaded', function () {
             dayElement.appendChild(daySpan);
             weekDays.appendChild(dayElement);
         }
+        // UL 요소에 이벤트 리스너 등록 (이벤트 위임)
+        ulElement.addEventListener('click', (event) => {
+            const dayElement = event.target.closest('li'); // 클릭된 요소 중 가장 가까운 li 요소 찾기
+            if (dayElement) { // li 요소가 클릭된 경우만 실행
+                const dateKey = dayElement.dataset.dateKey; // li의 데이터 속성에서 dateKey 가져오기
+                selectDate(dayElement); // 날짜 선택 처리
+                selectedDate = dateKey; // 선택된 날짜 설정
+                datePicker.value = dateKey; // 날짜 선택기를 선택한 날짜로 설정
+                loadTasks(dateKey); // 선택한 날짜의 할 일 로드
+            }
+        });
     }
     // 선택된 날짜 표시
     function selectDate(dayElement) {
@@ -107,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add To Do List -> DOM에 추가 -> 화면에 띄우기용
     function addTaskToDOM(task, index) {
         const taskElement = document.createElement('article');
-        taskElement.className = 'task';
+        taskElement.className = 'task-item';
         taskElement.innerHTML = `
             <div class="task-detail">
                 <span class="task-time">${task.time}</span>
@@ -153,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // back navigation
     backBtn.addEventListener('click', () => {
-        modalBtn.style.display = 'block';
+        modalBtn.style.display = 'inline-block';
         taskAddForm.style.display = 'none';
     });
 
@@ -162,27 +181,23 @@ document.addEventListener('DOMContentLoaded', function () {
     taskAddForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        const taskTitleInput = document.getElementById('task-title');
-        const taskDescInput = document.getElementById('task-desc');
-        const taskTitle = taskTitleInput.value; 
-        const taskDesc = taskDescInput.value;
+        const taskTitle = document.getElementById('task-title').value.trim();
+        const taskDesc = document.getElementById('task-desc').value.trim();
 
-        if (selectedDate) {  // 날짜가 선택된 경우에만 저장
-            const newTask = {
-                title: taskTitle,
-                desc: taskDesc,
-                time: new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric' })
-            };
+        const newTask = {
+            title: taskTitle,
+            desc: taskDesc,
+            time: new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric' })
+        };
 
-            // input field init
-            taskTitleInput.value = '';
-            taskDescInput.value = '';
+        // input field init 모든 폼 요소를 초기화할 때 사용가능
+        taskAddForm.reset();
 
-            addTaskToLocal(selectedDate, newTask); 
-            loadTasks(selectedDate); 
-            modalBtn.style.display = 'block'; 
-            taskAddForm.style.display = 'none'; 
-        }
+
+        addTaskToLocal(selectedDate, newTask); 
+        loadTasks(selectedDate); 
+        modalBtn.style.display = 'block'; 
+        taskAddForm.style.display = 'none';
     });
 
     loadWeekDays(currentDate); 
