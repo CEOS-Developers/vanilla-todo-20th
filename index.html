@@ -3,12 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
+    <title>To Do List-yyj0917</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="wrapper">
+      <div class="container">
+        <!-- header -->
+        <header>
+          <h2 class="today"></h2>
+          <span>
+            <h1>Today</h1>
+            <input type="date" id="date-picker" class="date-picker">
+          </span>
+        </header>
+        <!-- nav -->
+        <nav>
+          <ul class="week-days"></ul>
+        </nav>
+        <!-- main -->
+        <main class="task-list"></main>
+        <!-- footer -->
+        <footer>
+          <button class="btn-modal">+</button>
+          <form class="task-form" style="display: none;">
+            <div>
+              <input
+                type="text"
+                id="task-title"
+                placeholder="Task Title"
+                required
+                />
+              <input
+                type="text"
+                id="task-desc"
+                placeholder="Task Description"
+                required
+                />
+            </div>
+            <div>
+              <button type="submit" class="btn save">save</button>
+              <button type="button" class="btn back">back</button>
+            </div>
+          </form>
+        </footer>
+      </div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>

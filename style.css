@@ -1,1 +1,271 @@
 /* 본인의 디자인 감각을 최대한 발휘해주세요! */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'SUIT-Regular', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #dfe2e5;
+}
+.container {
+    width: 360px;
+    height: 80vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 28px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 20px 10px;
+}
+
+/* header */
+
+header {
+    width: 100%;
+    height: 15%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+header span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    input[type="date"] {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        appearance: none; 
+        background-color: transparent; 
+        border: none;
+        box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 1);
+        padding: 0 4px;
+        font-size: 14px;
+    }
+}
+header h1 {
+    font-size: 32px;
+    font-weight: 1200;
+    color: #333;
+}
+header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #c0c0c0;    
+}
+
+/* nav */
+
+nav {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+}
+nav ul {
+    padding: 0 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    list-style-type: none;
+
+}
+nav ul li {
+    width: 14%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+nav .week {
+    font-size: 16px;
+    font-weight: 800;
+    color: #c0c0c0;
+}
+nav .day {
+    font-size: 14px;
+    font-weight: 900;
+    color: #333;
+}
+
+/* 선택된 날짜 task-item에 적용되는 스타일 */
+nav ul li.selected {
+    border-radius: 0;
+    color: #89bfeb;
+    border-bottom: 2px solid #89bfeb;
+    span {
+        color: #89bfeb;
+    }
+}
+
+/* main */
+
+main {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+    border-top: 2px solid #f1f1f1;
+    border-bottom: 2px solid #f1f1f1;
+}
+/* scroll bar hide */
+.task-list {
+    -ms-overflow-style: none; /* IE 및 Edge에서 스크롤바 숨김 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨김 */
+}
+/* Webkit 기반 브라우저(Chrome, Safari 등)에서 스크롤바 숨김 */
+.task-list::-webkit-scrollbar {
+    display: none;
+}
+
+main article {
+    width: 100%;
+    height: auto;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8ff;
+    border-radius: 10px;
+
+    .task-detail {
+        position: relative;
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        overflow-wrap: break-word;
+        .task-time {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            color: gray;
+            text-decoration: underline;
+        }
+        .task-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #333;
+        }
+        .task-desc {
+            font-size: 14px;
+            font-weight: 700;
+            color: gray;
+        }
+        .task-delete {
+            position: absolute;
+            bottom: 10px;
+            right: 5px;
+            background-color: white;
+            color: black;
+            border-radius: 8px;
+            padding: 2px;
+            border: none;
+            cursor: pointer;
+        }
+        .task-delete:hover {
+            background-color: lightgray;
+        }
+    }
+}
+
+/* footer */
+
+footer {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+footer button.btn-modal{
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #89bfeb;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 32px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+footer button.btn-modal:hover {
+    background-color: #509ddc;
+}
+footer form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+footer form div {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+footer input {
+    width: 200px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #333;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+footer button.btn {
+    padding: 4px;
+    width: auto;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f8f8ff;
+    color: #333;
+    font-size: 16px;
+    font-weight: 800;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
