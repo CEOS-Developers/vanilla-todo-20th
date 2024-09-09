@@ -1,1 +1,207 @@
 /* 본인의 디자인 감각을 최대한 발휘해주세요! */
+body{
+    margin: 0;
+}
+.PageContainer{
+    display: flex;
+    width: 100vw; 
+    height: 100vh;
+    flex-direction: column; /* 요소 정렬 방향: 세로 */
+    align-items: center; /* 수평 정렬, 세로 축이 주축이므로 교차 축인 가로 축에서의 정렬을 담당 */
+    overflow-x:hidden; /* 가로 스크롤 제거 */
+}
+header{
+    display: flex;
+    background-color: rgba(110, 190, 110, 0.895);
+    width: 100%; /* 화면 꽉 차게 */
+    height: 4rem;
+    color: white;
+    font-weight: bold;
+    align-items: center; /* 주축: 가로 축, 수직 정렬*/
+    justify-content: center; /* 수평 정렬 */
+}
+
+h1{
+    display: flex;
+    margin: 0;
+    text-shadow: 0 5px 5px rgba(0, 0, 0, 0.205);
+}
+h2{
+    display: flex;
+    margin: 0;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    height: 90%; /* 화면의 100% 높이로 고정 */
+    overflow-y: scroll; /* 할 일이 많아지면 스크롤이 생기도록 설정 */
+    box-shadow: 0 0.875rem 1.75rem rgba(0,0,0,0.25), 0 0.625rem 0.625rem rgba(0,0,0,0.22);
+    border-radius: 2rem;
+    /*box-shadow: [x-offset] [y-offset] [blur-radius] [spread-radius] [color]; 깊이감과 입체감을 더하기 위해 2개 그림자 사용*/
+}
+
+/* 스크롤바 숨기기 (웹킷 기반 브라우저(Chrome, Safari 등)전용) */
+main::-webkit-scrollbar {
+    display: none; /* 스크롤바 숨기기 */
+}
+
+
+.dateContainer{
+    display: flex;
+    flex-direction: column;
+    margin: 3.125rem;
+    gap: 0.3125rem;
+    color: rgba(84, 170, 84, 0.922);
+}
+.date{
+    display: flex;
+    font-size: 0.9375rem;
+}
+
+.count{
+    margin-top: 0;
+}
+
+form {
+    display: flex;
+    position: relative;
+    width: calc(100% - 5rem);
+    padding: 1.3rem 1.3rem 1.3rem 3.3rem; /* background로 넣은 체크 이미지와 안 겹치도록 왼쪽 패딩 추가*/
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.11), 0 5px 5px rgba(0, 0, 0, 0.178);
+    border-radius: 0.625rem;
+    background-image: url('checkmark.svg');
+    background-size: 1.5rem;
+    background-position: 1rem center; /* background 이미지 위치, 왼쪽으로부터 1rem 떨어진 곳*/
+    background-repeat: no-repeat;
+}
+
+input{
+    width:calc(100% - 4rem); /* 왼쪽 추가 버튼이 차지한 공간을 제외한 부분*/
+    font-size: 1rem;
+    border: none;
+    outline: 0;
+}
+input::-webkit-input-placeholder {
+    color: rgb(94, 169, 139);
+}
+
+#submitBtn {
+    position: absolute; /* 부모 요소인 form 기준으로 배치 */
+    top: 50%; /* 부모 요소의 상단에서 50% 지점에 배치 */
+    transform: translateY(-50%); /* 자신의 높이의 50%만큼 위쪽으로 이동, 수직 중앙 정렬 시키기 */
+    right: 1.25rem; /* 부모 요소의 오른쪽에서 1.25rem */
+    background-color: transparent;
+    color: rgb(94, 169, 139);
+    padding: 5px 10px;
+    border: 1.5px solid rgb(94, 169, 139);
+    border-radius: 0.625rem;
+    cursor: pointer;
+}
+
+#submitBtn:hover {
+    background-color:#b5b6b779;
+    font-weight: bold;
+}
+
+.todoBox {
+    display: flex;
+    gap: 0.625rem; /* todo끼리의 gap*/
+    padding: 0;
+    flex-direction: column;
+  }
+  
+.todoBox li {
+    display: flex;
+    width: calc(100% - 2.5rem);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.11), 0 5px 5px rgba(0, 0, 0, 0.178);
+    padding: 1rem 1.3rem 1rem 1rem;
+    font-size: 1rem;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center; /* 수직 정렬 */
+    font-size: 1rem;
+    color: rgb(94, 169, 139);
+    animation: slideDown 0.3s ease-out; /* ease-out, 애니메이션이 끝날 때 속도가 점점 줄어드는 효과 */
+  }
+
+  .todoBox .todoSpan{
+    width: 15.625rem;
+    overflow-wrap: break-word;
+  }
+  
+  /* 새로운 요소가 추가될 때 slide 되는 애니메이션 */
+  @keyframes slideDown {
+    0% {
+        opacity: 0; /* 요소가 처음에는 투명함 */
+        transform: translateY(-20px); /* 애니메이션이 시작 될 때, 처음엔 위쪽에 위치 */
+    }
+    100% {
+        opacity: 1; /* 투명도가 0에서 1로 변화 */
+        transform: translateY(0); /* 제자리로 이동, 원래의 위치! */
+    }
+} /* 결국 위에서 아래로 부드럽게 이동하는 효과*/
+
+/* 요소가 삭제될 때 애니메이션 */
+.todoBox .remove {
+    animation: fadeOut 0.3s forwards; /* fadeOut 애니메이션의 마지막 상태가 계속 유지 됨. 즉 투명한 상태로!! */
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1; /* 처음에는 완전히 보이고 */
+        transform: scale(1); /* 원래 크기임 */
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9); /* 요소가 원래 크기의 90%로 축소 */
+    }
+}
+
+  
+.todoBox .deleteBtn {
+    border: none;
+    color: rgba(209, 46, 46, 0.664);
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1.5px solid rgba(193, 49, 49, 0.664);
+  }
+  
+.todoBox li button.deleteBtn:hover {
+    background-color: #b5b6b779; /* 삭제 버튼에 호버 효과 */
+    font-weight: bold;
+  }
+
+ /* Custom Checkbox */
+.todoCheckBox {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    appearance: none; /* 기본 체크박스 스타일 제거 */
+    border-radius: 50%; /* 둥근 모양 */
+    border: 2px solid rgb(94, 169, 139); /* 체크되지 않았을 때 테두리 */
+    background-color: transparent; /* 기본 배경 투명 */
+}
+
+/* 체크박스가 체크되었을 때 */
+.todoCheckBox:checked {
+    background-color: rgb(103, 219, 147); /* 체크 시 배경색 */
+    border-color: rgb(103, 219, 147); /* 테두리도 배경색과 동일하게 */
+    position: relative;
+}
+
+/* 체크박스가 체크되었을 때의 내부 체크 표시 */
+.todoCheckBox:checked::before {
+    content: '✓'; /* 체크 표시 */
+    font-size: 1rem;
+    color: white; /* 체크 표시 색상 */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* 중앙 정렬 */
+}

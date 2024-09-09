@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +8,23 @@
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="PageContainer">
+      <header>
+        <h1>To Do ✏️</h1>
+      </header>
+      <main>
+        <div class="dateContainer">
+            <h2>Today's To-Do 🍀</h2>
+            <p class="date"></p>
+            <p class="count">✅ : <span class="totalCount">0</span>  🎉 : <span class="completedCount">0</span></p>
+        <form>
+          <input type="text" placeholder="할 일 추가">
+          <button type="submit" id = "submitBtn">추가</button>
+        </form>
+        <ul class ="todoBox" ></ul>
+      </main>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
+
