@@ -34,8 +34,7 @@ h2{
 main{
     display: flex;
     flex-direction: column;
-    max-width: 30rem;
-    width: auto;
+    width: 30rem;
     height: 90%; /* 화면의 100% 높이로 고정 */
     overflow-y: scroll; /* 할 일이 많아지면 스크롤이 생기도록 설정 */
     box-shadow: 0 0.875rem 1.75rem rgba(0,0,0,0.25), 0 0.625rem 0.625rem rgba(0,0,0,0.22);
@@ -131,8 +130,9 @@ input::-webkit-input-placeholder {
 
   .todoBox .todoSpan{
     width: 15.625rem;
+    overflow-wrap: break-word;
   }
-
+  
   /* 새로운 요소가 추가될 때 slide 되는 애니메이션 */
   @keyframes slideDown {
     0% {

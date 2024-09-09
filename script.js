@@ -84,13 +84,16 @@ document.addEventListener("DOMContentLoaded", function () {
       deleteBtn.textContent = "삭제"; // deleteBtn의 텍스트 내용을 삭제라고 지정
       deleteBtn.classList.add("deleteBtn");
       deleteBtn.addEventListener("click", function () { // 버튼이 클릭 되었을 때 실행될 함수!!
-          alert('정말 삭제하시겠습니까?');
-          deleteTodo(todoText, li);
+        if(confirm("정말 삭제하시겠습니까?")){
+            alert("todo가 삭제되었습니다.");
+            deleteTodo(todoText, li);
+        }else{
+            alert("Kepp going!🔥");
+        }
       });
 
-      li.appendChild(checkbox); // 새로 만든 요소 (체크박스, 텍스트, 삭제 버튼)을 <li> 요소에 추가해서 하나의 todo 항목 완성!
-      li.appendChild(todoSpan); // 할 일 텍스트를 담은 <span> 요소 추가
-      li.appendChild(deleteBtn); // 삭제 버튼 추가
+      li.append(checkbox, todoSpan, deleteBtn); // appendChild를 append로 간소화!
+      
       todoBox.appendChild(li); // <ul> 요소를 불러 온 todoBox에 <li>들 추가
   }
 
@@ -115,15 +118,26 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCounts();
   }
 
+  let isAllCompleted = JSON.parse(localStorage.getItem("isAllCompleted")) || false; // localStorage에서 값을 가져오거나 없으면 false로 초기화
+
   function updateCounts() {
     const totalTodos = todoList.length;
-    const completedTodos = todoList.filter((todo) => todo.completed).length; // 완료된 것만 필터링
+    const completedTodos = todoList.filter((todo) => todo.completed).length; // 완료된 todo 필터링
 
     completedCountElem.textContent = completedTodos;
     totalCountElem.textContent = totalTodos;
-    if (totalTodos > 0 && completedTodos === totalTodos) {
-        alert('축하합니다! 모든 할 일을 완료하셨습니다! 🎉');
+
+    // 만약 할 일이 모두 완료되었고, 그 상태가 처음으로 발생한 경우에만 alert 표시
+    if (totalTodos > 0 && completedTodos === totalTodos && !isAllCompleted) {
+      alert('축하합니다! 모든 할 일을 완료하셨습니다! 🎉');
+      isAllCompleted = true; // 모든 할 일이 완료되었다고 기록
+      localStorage.setItem("isAllCompleted", JSON.stringify(isAllCompleted)); // 상태를 localStorage에 저장
+    } else if (completedTodos < totalTodos) {
+      // 할 일이 삭제되거나 새로 추가되면 상태를 초기화
+      isAllCompleted = false;
+      localStorage.setItem("isAllCompleted", JSON.stringify(isAllCompleted)); // 상태를 localStorage에 저장
     }
-}
+  }
+
   setting();
 });
