@@ -18,6 +18,7 @@ const updateTime = () => {
   today.innerHTML = now.toLocaleString("ko-KR", options);
 };
 
+updateTime();
 setInterval(updateTime, 1000); // 1초마다 호출
 
 /* localStorage 데이터 처리 */
