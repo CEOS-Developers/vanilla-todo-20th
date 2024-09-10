@@ -77,14 +77,14 @@ const printItem = (text, type) => {
 
   // 체크 버튼 생성하기
   const checkBtn = createBtn(
-    type === "todo" ? "images/empty_checkbox.png" : "images/full_checkbox.png",
+    type === "todo" ? "images/empty_checkbox.svg" : "images/full_checkbox.svg",
     "todo-check",
     type === "todo" ? todoToDid : didToTodo
   );
 
   // 삭제 버튼 생성하기
   const deleteBtn = createBtn(
-    "images/delete_btn.png",
+    "images/delete_btn.svg",
     "todo-del",
     type === "todo" ? deleteTodoItem : deleteDidItem
   );
