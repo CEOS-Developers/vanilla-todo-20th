@@ -103,7 +103,9 @@ const printItem = (text, type) => {
 // 할 일 추가하기 함수
 const addTodoItem = (event) => {
   event.preventDefault();
-  const todoInput = document.querySelector(".input").value.trim(); // 입력값 공백 확인
+  const inputElement = document.querySelector(".input");
+  const todoInput = inputElement.value.trim(); // 입력값 공백 확인
+
   if (todoInput) {
     todos.push(todoInput);
     saveToLocalStorage("todos", todos); // 업데이트된 todos 배열을 localStorage에 저장
