@@ -39,7 +39,7 @@ let dones = loadFromLocalStorage("dones"); // 한 일 배열
 // localStorage의 항목으로 초기화하기 함수
 const initTodoList = () => {
   todos.forEach((todo) => printItem(todo, "todo"));
-  dones.forEach((done) => printItem(done, "did"));
+  dones.forEach((done) => printItem(done, "done"));
 };
 
 // 할 일과 한 일 개수 및 성취도 업데이트 함수
@@ -80,14 +80,14 @@ const printItem = (text, type) => {
   const checkBtn = createBtn(
     type === "todo" ? "images/empty_checkbox.svg" : "images/full_checkbox.svg",
     "todo-check",
-    type === "todo" ? todoToDid : didToTodo
+    type === "todo" ? todoToDone : doneToTodo
   );
 
   // 삭제 버튼 생성하기
   const deleteBtn = createBtn(
     "images/delete_btn.svg",
     "todo-del",
-    type === "todo" ? deleteTodoItem : deleteDidItem
+    type === "todo" ? deleteTodoItem : deleteDoneItem
   );
 
   // 항목 구성하기
@@ -129,30 +129,30 @@ const deleteTodoItem = (e) => {
   updateCounts();
 };
 
-const deleteDidItem = (e) => {
-  dones = deleteItem(e, ".did-text", dones, "dones", ".didList");
+const deleteDoneItem = (e) => {
+  dones = deleteItem(e, ".done-text", dones, "dones", ".doneList");
   updateCounts();
 };
 
 // 할 일에서 한 일로 이동 함수
-const todoToDid = (e) => {
+const todoToDone = (e) => {
   const target = e.target.closest("li");
   const todoText = target.querySelector(".todo-text").innerText;
   todos = deleteItem(e, ".todo-text", todos, "todos", ".todoList");
   dones.push(todoText);
   saveToLocalStorage("dones", dones); // 한 일 저장
-  printItem(todoText, "did");
+  printItem(todoText, "done");
   updateCounts();
 };
 
 // 한 일에서 할 일로 이동 함수
-const didToTodo = (e) => {
+const doneToTodo = (e) => {
   const target = e.target.closest("li");
-  const didText = target.querySelector(".did-text").innerText;
-  dones = deleteItem(e, ".did-text", dones, "dones", ".didList");
-  todos.push(didText);
+  const doneText = target.querySelector(".done-text").innerText;
+  dones = deleteItem(e, ".done-text", dones, "dones", ".doneList");
+  todos.push(doneText);
   saveToLocalStorage("todos", todos); // 할 일 저장
-  printItem(didText, "todo");
+  printItem(doneText, "todo");
   updateCounts();
 };
 
