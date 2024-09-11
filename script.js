@@ -54,15 +54,30 @@ const updateCounts = () => {
     totalCount > 0 ? `${doneCount}/${totalCount}` : "0/0";
 };
 
-/* 공용 함수 */
+// 이벤트 위임으로 버튼 클릭 처리를 위한 리스너 추가
+document.querySelector(".todoList").addEventListener("click", (e) => {
+  if (e.target.closest(".todo-check")) {
+    completeTodo(e);
+  } else if (e.target.closest(".todo-del")) {
+    deleteTodoItem(e);
+  }
+});
+
+document.querySelector(".doneList").addEventListener("click", (e) => {
+  if (e.target.closest(".todo-check")) {
+    restoreTodo(e);
+  } else if (e.target.closest(".todo-del")) {
+    deleteDoneItem(e);
+  }
+});
+
 // 버튼 생성하기 함수
-const createBtn = (src, className, clickHandler) => {
+const createBtn = (src, className) => {
   const btn = document.createElement("button");
   const img = document.createElement("img");
   img.setAttribute("src", src);
   btn.appendChild(img);
   btn.setAttribute("class", className);
-  btn.addEventListener("click", clickHandler);
 
   return btn;
 };
@@ -79,16 +94,11 @@ const printItem = (text, type) => {
   // 체크 버튼 생성하기
   const checkBtn = createBtn(
     type === "todo" ? "images/empty_checkbox.svg" : "images/full_checkbox.svg",
-    "todo-check",
-    type === "todo" ? todoToDone : doneToTodo
+    "todo-check"
   );
 
   // 삭제 버튼 생성하기
-  const deleteBtn = createBtn(
-    "images/delete_btn.svg",
-    "todo-del",
-    type === "todo" ? deleteTodoItem : deleteDoneItem
-  );
+  const deleteBtn = createBtn("images/delete_btn.svg", "todo-del");
 
   // 항목 구성하기
   itemContent.className = "todo-item";
@@ -136,7 +146,7 @@ const deleteDoneItem = (e) => {
 };
 
 // 할 일에서 한 일로 이동 함수
-const todoToDone = (e) => {
+const completeTodo = (e) => {
   const target = e.target.closest("li");
   const todoText = target.querySelector(".todo-text").innerText;
   todos = deleteItem(e, ".todo-text", todos, "todos", ".todoList");
@@ -147,7 +157,7 @@ const todoToDone = (e) => {
 };
 
 // 한 일에서 할 일로 이동 함수
-const doneToTodo = (e) => {
+const restoreTodo = (e) => {
   const target = e.target.closest("li");
   const doneText = target.querySelector(".done-text").innerText;
   dones = deleteItem(e, ".done-text", dones, "dones", ".doneList");

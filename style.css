@@ -1,3 +1,8 @@
+:root {
+  --light-blue: #85b6ff;
+  --blue: #458fff;
+}
+
 body {
   font-family: "Pretendard";
   display: flex;
@@ -25,7 +30,7 @@ header {
 }
 
 .today {
-  color: #85b6ff;
+  color: var(--light-blue);
   font-weight: 300;
   font-size: 0.938rem;
 }
@@ -43,7 +48,7 @@ nav {
 hr {
   width: 38%;
   height: 0.01rem;
-  background-color: #458fff;
+  background-color: var(--blue);
   border: 0;
 }
 
@@ -105,7 +110,7 @@ main {
 input {
   width: 70%;
   border: transparent;
-  color: #85b6ff;
+  color: var(--light-blue);
 }
 
 input:focus {
@@ -124,20 +129,20 @@ button {
 }
 
 .bold-style {
-  color: #85b6ff;
+  color: var(--light-blue);
   font-weight: 600;
   font-size: 0.938rem;
 }
 
 .ment-style {
-  color: #458fff;
+  color: var(--blue);
   font-weight: 600;
   font-size: 1.125rem;
 }
 
 .box-style {
   border-radius: 1.875rem;
-  border: 0.063rem solid #85b6ff;
+  border: 0.063rem solid var(--blue);
 }
 
 ul li {
@@ -170,7 +175,7 @@ footer {
 
 .todo-text,
 .done-text {
-  color: #458fff;
+  color: var(--blue);
   font-weight: 300;
   font-size: 1rem;
 }
