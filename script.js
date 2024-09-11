@@ -122,7 +122,6 @@ const deleteItem = (e, classSelector, array, key, listSelector) => {
   array = array.filter((item) => item !== text);
   saveToLocalStorage(key, array);
   document.querySelector(listSelector).removeChild(target);
-  updateCounts();
   return array;
 };
 
