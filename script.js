@@ -161,23 +161,15 @@ const doneToTodo = (e) => {
 const form = document.querySelector(".input-box"); // 입력창 폼 요소
 const showMessage = document.querySelector(".show-input"); // 입력창 열고 닫는 버튼 요소
 
-// 애니메이션 적용한 입력창 열고 닫기 함수
+// 입력창 토글 함수
 let isFormOpen = false;
 
 const toggleForm = () => {
   if (isFormOpen) {
     form.classList.remove("show");
     form.classList.add("hide");
+    isFormOpen = false;
 
-    form.addEventListener(
-      "animationend",
-      () => {
-        form.style.display = "none";
-        form.classList.remove("hide");
-        isFormOpen = false;
-      },
-      { once: true }
-    );
     showMessage.innerHTML = "입력창 불러오기";
   } else {
     form.style.display = "flex";
@@ -189,11 +181,20 @@ const toggleForm = () => {
   }
 };
 
+// 애니메이션 종료 처리하는 이벤트리스너
+const handleAnimationEnd = (e) => {
+  if (form.classList.contains("hide")) {
+    form.style.display = "none";
+    form.classList.remove("hide");
+  }
+};
+
 // 이벤트 리스너 등록 및 기존 데이터 불러오기 함수
 const init = () => {
   initTodoList();
   updateCounts();
   form.addEventListener("submit", addTodoItem);
+  form.addEventListener("animationend", handleAnimationEnd);
   showMessage.addEventListener("click", toggleForm);
 };
 
