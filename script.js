@@ -38,8 +38,8 @@ let dones = loadFromLocalStorage("dones"); // 한 일 배열
 
 // localStorage의 항목으로 초기화하기 함수
 const initTodoList = () => {
-  todos.forEach((todo) => printItem(todo, "todo"));
-  dones.forEach((done) => printItem(done, "done"));
+  todos.forEach((todo) => printItem(todo.text, "todo", todo.id));
+  dones.forEach((done) => printItem(done.text, "done", done.id));
 };
 
 // 할 일과 한 일 개수 및 성취도 업데이트 함수
@@ -83,13 +83,14 @@ const createBtn = (src, className) => {
 };
 
 // 항목 출력하기 함수
-const printItem = (text, type) => {
+const printItem = (text, type, id) => {
   const list = document.querySelector(`.${type}List`);
   const item = document.createElement("li");
   const itemContent = document.createElement("div");
   const itemText = document.createElement("span");
   itemText.innerText = text;
   itemText.className = `${type}-text`;
+  item.setAttribute("data-id", id);
 
   // 체크 버튼 생성하기
   const checkBtn = createBtn(
@@ -117,53 +118,65 @@ const addTodoItem = (event) => {
   const todoInput = inputElement.value.trim(); // 입력값 공백 확인
 
   if (todoInput) {
-    todos.push(todoInput);
+    const todoItem = { id: Date.now().toString(), text: todoInput };
+
+    todos.push(todoItem);
     saveToLocalStorage("todos", todos); // 업데이트된 todos 배열을 localStorage에 저장
-    printItem(todoInput, "todo");
+    printItem(todoInput, "todo", todoItem.id);
     document.querySelector(".input").value = ""; // 입력창 초기화
     updateCounts();
   }
 };
 
 // 항목 삭제하기 함수
-const deleteItem = (e, classSelector, array, key, listSelector) => {
+const deleteItem = (e, array, key, listSelector) => {
   const target = e.target.closest("li");
-  const text = target.querySelector(classSelector).innerText;
-  array = array.filter((item) => item !== text);
+  const itemId = target.getAttribute("data-id");
+
+  array = array.filter((item) => item.id !== itemId);
   saveToLocalStorage(key, array);
+
   document.querySelector(listSelector).removeChild(target);
   return array;
 };
 
 const deleteTodoItem = (e) => {
-  todos = deleteItem(e, ".todo-text", todos, "todos", ".todoList");
+  todos = deleteItem(e, todos, "todos", ".todoList");
   updateCounts();
 };
 
 const deleteDoneItem = (e) => {
-  dones = deleteItem(e, ".done-text", dones, "dones", ".doneList");
+  dones = deleteItem(e, dones, "dones", ".doneList");
   updateCounts();
 };
 
 // 할 일에서 한 일로 이동 함수
 const completeTodo = (e) => {
   const target = e.target.closest("li");
-  const todoText = target.querySelector(".todo-text").innerText;
-  todos = deleteItem(e, ".todo-text", todos, "todos", ".todoList");
-  dones.push(todoText);
+  const todoItem = {
+    id: target.getAttribute("data-id"),
+    text: target.innerText,
+  };
+  // const todoText = target.querySelector(".todo-text").innerText;
+  todos = deleteItem(e, todos, "todos", ".todoList");
+  dones.push(todoItem);
   saveToLocalStorage("dones", dones); // 한 일 저장
-  printItem(todoText, "done");
+  printItem(todoItem.text, "done", todoItem.id);
   updateCounts();
 };
 
 // 한 일에서 할 일로 이동 함수
 const restoreTodo = (e) => {
   const target = e.target.closest("li");
-  const doneText = target.querySelector(".done-text").innerText;
-  dones = deleteItem(e, ".done-text", dones, "dones", ".doneList");
-  todos.push(doneText);
+  const doneItem = {
+    id: target.getAttribute("data-id"),
+    text: target.innerText,
+  };
+  //const doneText = target.querySelector(".done-text").innerText;
+  dones = deleteItem(e, dones, "dones", ".doneList");
+  todos.push(doneItem);
   saveToLocalStorage("todos", todos); // 할 일 저장
-  printItem(doneText, "todo");
+  printItem(doneItem.text, "todo", doneItem.id);
   updateCounts();
 };
 
