@@ -3,12 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
+    <title>TodoList</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="images/full_checkbox.svg" />
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <header>
+        <h1 class="today"></h1>
+      </header>
+      <nav class="box-style">
+        <span class="ment-style">당신의 할 일을 작성해보세요 ✏️</span>
+        <hr />
+        <button class="show-input ment-style">입력창 불러오기</button>
+      </nav>
+      <main class="box-style">
+        <section class="todo">
+          <div class="todo-top">
+            <h2 class="ment-style">What I have to do</h2>
+            <form class="input-box box-style" style="display: none">
+              <input class="input" />
+              <button class="bold-style">작성하기</button>
+            </form>
+          </div>
+          <ul class="todoList"></ul>
+        </section>
+        <section class="done">
+          <h2 class="ment-style">What I did</h2>
+          <ul class="doneList"></ul>
+        </section>
+      </main>
+      <footer>
+        <span>
+          <span class="today">Total: </span>
+          <span class="count bold-style"></span>
+        </span>
+        <span>
+          <span class="today">Accomplishment: </span>
+          <span class="accomplishment bold-style"></span>
+        </span>
+      </footer>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>

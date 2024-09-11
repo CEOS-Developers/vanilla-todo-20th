@@ -1,1 +1,198 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+:root {
+  --light-blue: #85b6ff;
+  --blue: #458fff;
+}
+
+body {
+  font-family: "Pretendard";
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 37.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-width: 62.5rem) {
+  .container {
+    width: 80%;
+  }
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.today {
+  color: var(--light-blue);
+  font-weight: 300;
+  font-size: 0.938rem;
+}
+
+nav {
+  width: 100%;
+  height: 3.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+hr {
+  width: 38%;
+  height: 0.01rem;
+  background-color: var(--blue);
+  border: 0;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.625rem 1.25rem;
+}
+
+.todo-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-1.25rem); /* 위에서 아래로 */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* 제자리 */
+  }
+}
+
+@keyframes slideUpFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-1.25rem);
+  }
+}
+
+.input-box {
+  width: 50%;
+  height: 1.875rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.625rem;
+}
+
+.input-box.show {
+  animation: slideDownFadeIn 0.3s ease-out forwards;
+}
+
+.input-box.hide {
+  animation: slideUpFadeOut 0.3s ease-out forwards;
+}
+
+input {
+  width: 70%;
+  border: transparent;
+  color: var(--light-blue);
+}
+
+input:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 41.875rem) {
+  input {
+    width: 60%;
+  }
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+.bold-style {
+  color: var(--light-blue);
+  font-weight: 600;
+  font-size: 0.938rem;
+}
+
+.ment-style {
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.box-style {
+  border-radius: 1.875rem;
+  border: 0.063rem solid var(--blue);
+}
+
+ul li {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+}
+
+ul {
+  padding-left: 0;
+}
+
+footer {
+  width: 14rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: flex-start;
+  margin-top: 0.625rem;
+}
+
+/*todo 항목 스타일*/
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.938rem;
+  box-sizing: border-box;
+}
+
+.todo-text,
+.done-text {
+  color: var(--blue);
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.todo-check img {
+  display: block;
+  width: 1.25rem;
+  margin-right: 0.6rem;
+}
+
+.todo-del {
+  width: 0.688rem;
+  box-sizing: border-box;
+}
+
+.todo-del img {
+  width: 0.688rem;
+  display: block;
+  padding-bottom: 0.25rem;
+}
