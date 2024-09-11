@@ -162,8 +162,10 @@ const form = document.querySelector(".input-box"); // 입력창 폼 요소
 const showMessage = document.querySelector(".show-input"); // 입력창 열고 닫는 버튼 요소
 
 // 애니메이션 적용한 입력창 열고 닫기 함수
+let isFormOpen = false;
+
 const toggleForm = () => {
-  if (form.classList.contains("show")) {
+  if (isFormOpen) {
     form.classList.remove("show");
     form.classList.add("hide");
 
@@ -172,6 +174,7 @@ const toggleForm = () => {
       () => {
         form.style.display = "none";
         form.classList.remove("hide");
+        isFormOpen = false;
       },
       { once: true }
     );
@@ -180,6 +183,7 @@ const toggleForm = () => {
     form.style.display = "flex";
     form.classList.remove("hide");
     form.classList.add("show");
+    isFormOpen = true;
 
     showMessage.innerHTML = "입력창 다시닫기";
   }
